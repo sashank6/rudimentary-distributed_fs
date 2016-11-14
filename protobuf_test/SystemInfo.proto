@@ -1,0 +1,4 @@
+message SystemInfo{
+	required int32 foldersize=1;
+	required int32 port=2;
+}
