@@ -36,12 +36,15 @@ int main() {
 
 	struct sockaddr_in client_addr;
 	socklen_t client_len = sizeof(client_addr);
+	int con_fd;
+	do {
+		con_fd = accept(socket_fd, (struct sockaddr *) &client_addr,
+				&client_len);
+		printf("IP address of client is: %s\n", inet_ntoa(client_addr.sin_addr));
+	}while(con_fd!=-1);
 
-	int con_fd = accept(socket_fd, (struct sockaddr *) &client_addr,
-			&client_len);
-	printf("IP address is: %s\n", inet_ntoa(client_addr.sin_addr));
 	if (con_fd == -1)
-		handle_error("Accept Error");
+	handle_error("Accept Error");
 
 	close(con_fd);
 	close(socket_fd);
