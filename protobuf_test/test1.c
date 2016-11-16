@@ -3,11 +3,9 @@
 #include "SystemInfo.pb-c.h"
 
 int main(int argc, const char * argv[]) {
-	SystemInfo msg = SYSTEM_INFO__INIT; // AMessage
-	void *buf;                     // Buffer to store serialized data
-	unsigned len;                  // Length of serialized data
-
-
+	SystemInfo msg = SYSTEM_INFO__INIT;
+	void *buf;
+	unsigned len;
 
 	msg.foldersize = 23;
 	msg.port = 34343;
@@ -16,9 +14,10 @@ int main(int argc, const char * argv[]) {
 	buf = malloc(len);
 	system_info__pack(&msg, buf);
 
-	fprintf(stderr, "Writing %d serialized bytes\n", len); // See the length of message
-	fwrite(buf, len, 1, stdout); // Write to stdout to allow direct command line piping
+	fprintf(stderr, "Writing %d serialized bytes\n", len);
+	fwrite(buf, len, 1, stdout); //
 
-	free(buf); // Free the allocated serialized buffer
+
+	free(buf);
 	return 0;
 }
