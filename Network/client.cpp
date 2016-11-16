@@ -25,7 +25,7 @@ int main() {
 		handle_error("Socket Opening Error");
 
 	struct hostent *server;
-	server = gethostbyname("192.168.1.115");
+	server = gethostbyname("169.254.1.150");
 	if (server == NULL)
 		handle_error("No valid host");
 

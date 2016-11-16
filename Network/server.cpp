@@ -5,13 +5,14 @@
 #include<sys/socket.h>
 #include<sys/un.h>
 #include<errno.h>
-#include <netinet/in.h>
+#include<netinet/in.h>
+#include<arpa/inet.h>
 
 #define PORT 34343
 
 void handle_error(char *s) {
 	printf("Error: %s Reason: %s\n", s, strerror(errno));
-	exit(EXIT_FAILURE);
+	exit (EXIT_FAILURE);
 }
 
 int main() {
@@ -40,11 +41,13 @@ int main() {
 	do {
 		con_fd = accept(socket_fd, (struct sockaddr *) &client_addr,
 				&client_len);
-		printf("IP address of client is: %s\n", inet_ntoa(client_addr.sin_addr));
-	}while(con_fd!=-1);
+		char ipaddr[INET_ADDRSTRLEN];
+		inet_ntop(AF_INET, &(client_addr.sin_addr), ipaddr, INET_ADDRSTRLEN);
+		printf("IP address of client is: %s\n", ipaddr);
+	} while (con_fd != -1);
 
 	if (con_fd == -1)
-	handle_error("Accept Error");
+		handle_error("Accept Error");
 
 	close(con_fd);
 	close(socket_fd);
