@@ -1,56 +1,13 @@
-#include<stdio.h>
-#include<unistd.h>
-#include<stdlib.h>
-#include<string.h>
-#include<sys/socket.h>
-#include<sys/un.h>
-#include<errno.h>
-#include<netinet/in.h>
-#include<arpa/inet.h>
+#include "Packet.pb.h"
+#include "connections.h"
+#include "ports.h"
 
-#define PORT 34343
+using namespace std;
 
-void handle_error(char *s) {
-	printf("Error: %s Reason: %s\n", s, strerror(errno));
-	exit (EXIT_FAILURE);
-}
 
 int main() {
 
-	int socket_fd;
-
-	socket_fd = socket(AF_INET, SOCK_STREAM, 0);
-	if (socket_fd == -1)
-		handle_error("Socket Opening Error");
-
-	struct sockaddr_in serv_addr;
-	serv_addr.sin_family = AF_INET;
-	serv_addr.sin_addr.s_addr = INADDR_ANY;
-	serv_addr.sin_port = htons(PORT);
-
-	if (bind(socket_fd, (struct sockaddr *) &serv_addr, sizeof(serv_addr))
-			== -1)
-		handle_error("Bind error");
-
-	if (listen(socket_fd, 5) == -1)
-		handle_error("listen error");
-
-	struct sockaddr_in client_addr;
-	socklen_t client_len = sizeof(client_addr);
-	int con_fd;
-	do {
-		con_fd = accept(socket_fd, (struct sockaddr *) &client_addr,
-				&client_len);
-		char ipaddr[INET_ADDRSTRLEN];
-		inet_ntop(AF_INET, &(client_addr.sin_addr), ipaddr, INET_ADDRSTRLEN);
-		printf("IP address of client is: %s\n", ipaddr);
-	} while (con_fd != -1);
-
-	if (con_fd == -1)
-		handle_error("Accept Error");
-
-	close(con_fd);
-	close(socket_fd);
+	open_socket(SERVER_CONNECT_PORT);
 
 	return 0;
 }

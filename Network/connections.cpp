@@ -1,3 +1,14 @@
+#include<stdio.h>
+#include<unistd.h>
+#include<stdlib.h>
+#include<sys/socket.h>
+#include<sys/un.h>
+#include<netinet/in.h>
+#include<arpa/inet.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include "errors.h"
+#include "Packet.pb.h"
 void open_socket(unsigned int port) {
 	int socket_fd;
 
@@ -35,7 +46,7 @@ void open_socket(unsigned int port) {
 	close(socket_fd);
 }
 
-void send_message(string hostname, unsigned int port, Packet packet) {
+void send_message(char *hostname, unsigned int port, Packet packet) {
 	int socket_fd;
 	struct sockaddr_in serv_addr;
 
