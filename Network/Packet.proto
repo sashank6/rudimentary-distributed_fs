@@ -1,0 +1,9 @@
+message SystemInformation{
+	required int32 port=1;
+	required int32 filesize=2;
+}
+
+message Packet{
+	required int32 FLAG=1;
+	optional SystemInformation sysinfo=2;
+}
