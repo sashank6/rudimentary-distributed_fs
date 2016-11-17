@@ -7,8 +7,8 @@
 #include<errno.h>
 #include <netinet/in.h>
 #include <netdb.h>
+#include"ports.h"
 
-#define PORT 34343
 
 void handle_error(char *s) {
 	printf("Error: %s Reason: %s\n", s, strerror(errno));
@@ -32,7 +32,7 @@ int main() {
 	serv_addr.sin_family = AF_INET;
 	bcopy((char *) server->h_addr, (char *) &serv_addr.sin_addr.s_addr,
 			server->h_length);
-	serv_addr.sin_port = htons(PORT);
+	serv_addr.sin_port = htons(SERVER_CONNECT_PORT);
 
 	if (connect(socket_fd, (struct sockaddr *) &serv_addr, sizeof(serv_addr))
 			== -1)
