@@ -30,7 +30,11 @@ void open_socket(unsigned int port) {
 
 		string recd_data;
 		FILE *read_stream = fdopen(con_fd, "r");
-		fscanf(read_stream, "%s", &recd_data);
+		char str[1024];
+		while (fgets(str, 1024, read_stream) != NULL) {
+			recd_data += string(str);
+		}
+
 		Packet packet = deserialize(recd_data);
 		printf("%d\n", packet.flag());
 		fclose(read_stream);
