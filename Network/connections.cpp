@@ -1,14 +1,4 @@
-#include<stdio.h>
-#include<unistd.h>
-#include<stdlib.h>
-#include<sys/socket.h>
-#include<sys/un.h>
-#include<netinet/in.h>
-#include<arpa/inet.h>
-#include <netinet/in.h>
-#include <netdb.h>
-#include "errors.h"
-#include "Packet.pb.h"
+#include "connections.h"
 void open_socket(unsigned int port) {
 	int socket_fd;
 
@@ -37,6 +27,7 @@ void open_socket(unsigned int port) {
 		char ipaddr[INET_ADDRSTRLEN];
 		inet_ntop(AF_INET, &(client_addr.sin_addr), ipaddr, INET_ADDRSTRLEN);
 		printf("IP address of client is: %s\n", ipaddr);
+
 	} while (con_fd != -1);
 
 	if (con_fd == -1)
