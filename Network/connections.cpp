@@ -28,6 +28,13 @@ void open_socket(unsigned int port) {
 		inet_ntop(AF_INET, &(client_addr.sin_addr), ipaddr, INET_ADDRSTRLEN);
 		printf("IP address of client is: %s\n", ipaddr);
 
+		string recd_data;
+		FILE *read_stream = fdopen(con_fd, "r");
+		fscanf(read_stream, "%s", &recd_data);
+		Packet packet = deserialize(recd_data);
+		printf("%d\n", packet.flag());
+		fclose(read_stream);
+
 	} while (con_fd != -1);
 
 	if (con_fd == -1)
@@ -58,6 +65,12 @@ void send_message(char *hostname, unsigned int port, Packet packet) {
 	if (connect(socket_fd, (struct sockaddr *) &serv_addr, sizeof(serv_addr))
 			== -1)
 		handle_error("Connection Error");
+
+	FILE *write_stream = fdopen(socket_fd, "w");
+	string serialized_data = serialize(packet);
+	fprintf(write_stream, "%s", serialized_data.c_str());
+
+	fclose(write_stream);
 	close(socket_fd);
 }
 

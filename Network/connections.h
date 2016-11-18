@@ -9,5 +9,7 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include "errors.h"
+#include "serialization.h"
+#include <string>
 void open_socket(unsigned int);
 void send_message(char *hostname, unsigned int port, Packet packet);
