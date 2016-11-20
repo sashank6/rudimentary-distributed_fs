@@ -41,7 +41,7 @@ void open_socket(unsigned int port) {
 		}
 
 		Packet packet = deserialize(recd_data);
-		process_packet(packet);
+		process_packet(packet,ipaddr);
 		fclose(read_stream);
 
 	} while (con_fd != -1);

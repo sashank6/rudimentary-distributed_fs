@@ -1,6 +1,6 @@
 message SystemInformation{
 	required int32 port=1;
-	required int32 filesize=2;
+	required int32 disksize=2;
 }
 
 message Packet{

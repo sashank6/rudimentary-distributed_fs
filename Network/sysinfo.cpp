@@ -1,8 +1,12 @@
 #include "sysinfo.h"
-void process_sysinfo(Packet packet) {
+void process_sysinfo(Packet packet, string ipaddr) {
 
 	SystemInformation sysinfo = packet.sysinfo();
 	int port = sysinfo.port();
-	int filesize = sysinfo.filesize();
-	printf("PORT: %d FILESIZE: %d\n", port, filesize);
+	int disksize = sysinfo.disksize();
+	Sysinfo sysinfo_struct;
+	sysinfo_struct.ipaddress = ipaddr;
+	sysinfo_struct.port = port;
+	sysinfo_struct.disksize = disksize;
+
 }

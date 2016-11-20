@@ -7,7 +7,6 @@
 #include <algorithm>
 
 #include <google/protobuf/stubs/common.h>
-#include <google/protobuf/stubs/port.h>
 #include <google/protobuf/stubs/once.h>
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/wire_format_lite_inl.h>
@@ -29,7 +28,6 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 }  // namespace
 
 
-void protobuf_AssignDesc_Packet_2eproto() GOOGLE_ATTRIBUTE_COLD;
 void protobuf_AssignDesc_Packet_2eproto() {
   protobuf_AddDesc_Packet_2eproto();
   const ::google::protobuf::FileDescriptor* file =
@@ -39,94 +37,82 @@ void protobuf_AssignDesc_Packet_2eproto() {
   SystemInformation_descriptor_ = file->message_type(0);
   static const int SystemInformation_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SystemInformation, port_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SystemInformation, filesize_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SystemInformation, disksize_),
   };
   SystemInformation_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+    new ::google::protobuf::internal::GeneratedMessageReflection(
       SystemInformation_descriptor_,
-      SystemInformation::internal_default_instance(),
+      SystemInformation::default_instance_,
       SystemInformation_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SystemInformation, _has_bits_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SystemInformation, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SystemInformation, _unknown_fields_),
       -1,
-      -1,
-      sizeof(SystemInformation),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SystemInformation, _internal_metadata_));
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(SystemInformation));
   Packet_descriptor_ = file->message_type(1);
   static const int Packet_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Packet, flag_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Packet, sysinfo_),
   };
   Packet_reflection_ =
-    ::google::protobuf::internal::GeneratedMessageReflection::NewGeneratedMessageReflection(
+    new ::google::protobuf::internal::GeneratedMessageReflection(
       Packet_descriptor_,
-      Packet::internal_default_instance(),
+      Packet::default_instance_,
       Packet_offsets_,
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Packet, _has_bits_),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Packet, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Packet, _unknown_fields_),
       -1,
-      -1,
-      sizeof(Packet),
-      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Packet, _internal_metadata_));
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      ::google::protobuf::MessageFactory::generated_factory(),
+      sizeof(Packet));
 }
 
 namespace {
 
 GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_AssignDescriptors_once_);
-void protobuf_AssignDescriptorsOnce() {
+inline void protobuf_AssignDescriptorsOnce() {
   ::google::protobuf::GoogleOnceInit(&protobuf_AssignDescriptors_once_,
                  &protobuf_AssignDesc_Packet_2eproto);
 }
 
-void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      SystemInformation_descriptor_, SystemInformation::internal_default_instance());
+    SystemInformation_descriptor_, &SystemInformation::default_instance());
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
-      Packet_descriptor_, Packet::internal_default_instance());
+    Packet_descriptor_, &Packet::default_instance());
 }
 
 }  // namespace
 
 void protobuf_ShutdownFile_Packet_2eproto() {
-  SystemInformation_default_instance_.Shutdown();
+  delete SystemInformation::default_instance_;
   delete SystemInformation_reflection_;
-  Packet_default_instance_.Shutdown();
+  delete Packet::default_instance_;
   delete Packet_reflection_;
 }
 
-void protobuf_InitDefaults_Packet_2eproto_impl() {
+void protobuf_AddDesc_Packet_2eproto() {
+  static bool already_here = false;
+  if (already_here) return;
+  already_here = true;
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-  SystemInformation_default_instance_.DefaultConstruct();
-  Packet_default_instance_.DefaultConstruct();
-  SystemInformation_default_instance_.get_mutable()->InitAsDefaultInstance();
-  Packet_default_instance_.get_mutable()->InitAsDefaultInstance();
-}
-
-GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_InitDefaults_Packet_2eproto_once_);
-void protobuf_InitDefaults_Packet_2eproto() {
-  ::google::protobuf::GoogleOnceInit(&protobuf_InitDefaults_Packet_2eproto_once_,
-                 &protobuf_InitDefaults_Packet_2eproto_impl);
-}
-void protobuf_AddDesc_Packet_2eproto_impl() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  protobuf_InitDefaults_Packet_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
     "\n\014Packet.proto\"3\n\021SystemInformation\022\014\n\004p"
-    "ort\030\001 \002(\005\022\020\n\010filesize\030\002 \002(\005\";\n\006Packet\022\014\n"
+    "ort\030\001 \002(\005\022\020\n\010disksize\030\002 \002(\005\";\n\006Packet\022\014\n"
     "\004FLAG\030\001 \002(\005\022#\n\007sysinfo\030\002 \001(\0132\022.SystemInf"
     "ormation", 128);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "Packet.proto", &protobuf_RegisterTypes);
+  SystemInformation::default_instance_ = new SystemInformation();
+  Packet::default_instance_ = new Packet();
+  SystemInformation::default_instance_->InitAsDefaultInstance();
+  Packet::default_instance_->InitAsDefaultInstance();
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_Packet_2eproto);
 }
 
-GOOGLE_PROTOBUF_DECLARE_ONCE(protobuf_AddDesc_Packet_2eproto_once_);
-void protobuf_AddDesc_Packet_2eproto() {
-  ::google::protobuf::GoogleOnceInit(&protobuf_AddDesc_Packet_2eproto_once_,
-                 &protobuf_AddDesc_Packet_2eproto_impl);
-}
 // Force AddDescriptors() to be called at static initialization time.
 struct StaticDescriptorInitializer_Packet_2eproto {
   StaticDescriptorInitializer_Packet_2eproto() {
@@ -134,26 +120,15 @@ struct StaticDescriptorInitializer_Packet_2eproto {
   }
 } static_descriptor_initializer_Packet_2eproto_;
 
-namespace {
-
-static void MergeFromFail(int line) GOOGLE_ATTRIBUTE_COLD GOOGLE_ATTRIBUTE_NORETURN;
-static void MergeFromFail(int line) {
-  ::google::protobuf::internal::MergeFromFail(__FILE__, line);
-}
-
-}  // namespace
-
-
 // ===================================================================
 
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
+#ifndef _MSC_VER
 const int SystemInformation::kPortFieldNumber;
-const int SystemInformation::kFilesizeFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+const int SystemInformation::kDisksizeFieldNumber;
+#endif  // !_MSC_VER
 
 SystemInformation::SystemInformation()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  if (this != internal_default_instance()) protobuf_InitDefaults_Packet_2eproto();
+  : ::google::protobuf::Message() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:SystemInformation)
 }
@@ -162,17 +137,17 @@ void SystemInformation::InitAsDefaultInstance() {
 }
 
 SystemInformation::SystemInformation(const SystemInformation& from)
-  : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
+  : ::google::protobuf::Message() {
   SharedCtor();
-  UnsafeMergeFrom(from);
+  MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:SystemInformation)
 }
 
 void SystemInformation::SharedCtor() {
   _cached_size_ = 0;
-  ::memset(&port_, 0, reinterpret_cast<char*>(&filesize_) -
-    reinterpret_cast<char*>(&port_) + sizeof(filesize_));
+  port_ = 0;
+  disksize_ = 0;
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
 SystemInformation::~SystemInformation() {
@@ -181,6 +156,8 @@ SystemInformation::~SystemInformation() {
 }
 
 void SystemInformation::SharedDtor() {
+  if (this != default_instance_) {
+  }
 }
 
 void SystemInformation::SetCachedSize(int size) const {
@@ -194,52 +171,39 @@ const ::google::protobuf::Descriptor* SystemInformation::descriptor() {
 }
 
 const SystemInformation& SystemInformation::default_instance() {
-  protobuf_InitDefaults_Packet_2eproto();
-  return *internal_default_instance();
+  if (default_instance_ == NULL) protobuf_AddDesc_Packet_2eproto();
+  return *default_instance_;
 }
 
-::google::protobuf::internal::ExplicitlyConstructed<SystemInformation> SystemInformation_default_instance_;
+SystemInformation* SystemInformation::default_instance_ = NULL;
 
-SystemInformation* SystemInformation::New(::google::protobuf::Arena* arena) const {
-  SystemInformation* n = new SystemInformation;
-  if (arena != NULL) {
-    arena->Own(n);
-  }
-  return n;
+SystemInformation* SystemInformation::New() const {
+  return new SystemInformation;
 }
 
 void SystemInformation::Clear() {
-// @@protoc_insertion_point(message_clear_start:SystemInformation)
-#if defined(__clang__)
-#define ZR_HELPER_(f) \
-  _Pragma("clang diagnostic push") \
-  _Pragma("clang diagnostic ignored \"-Winvalid-offsetof\"") \
-  __builtin_offsetof(SystemInformation, f) \
-  _Pragma("clang diagnostic pop")
-#else
-#define ZR_HELPER_(f) reinterpret_cast<char*>(\
-  &reinterpret_cast<SystemInformation*>(16)->f)
-#endif
+#define OFFSET_OF_FIELD_(f) (reinterpret_cast<char*>(      \
+  &reinterpret_cast<SystemInformation*>(16)->f) - \
+   reinterpret_cast<char*>(16))
 
-#define ZR_(first, last) do {\
-  ::memset(&(first), 0,\
-           ZR_HELPER_(last) - ZR_HELPER_(first) + sizeof(last));\
-} while (0)
+#define ZR_(first, last) do {                              \
+    size_t f = OFFSET_OF_FIELD_(first);                    \
+    size_t n = OFFSET_OF_FIELD_(last) - f + sizeof(last);  \
+    ::memset(&first, 0, n);                                \
+  } while (0)
 
-  ZR_(port_, filesize_);
+  ZR_(port_, disksize_);
 
-#undef ZR_HELPER_
+#undef OFFSET_OF_FIELD_
 #undef ZR_
 
-  _has_bits_.Clear();
-  if (_internal_metadata_.have_unknown_fields()) {
-    mutable_unknown_fields()->Clear();
-  }
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
 }
 
 bool SystemInformation::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:SystemInformation)
   for (;;) {
@@ -250,25 +214,25 @@ bool SystemInformation::MergePartialFromCodedStream(
       // required int32 port = 1;
       case 1: {
         if (tag == 8) {
-          set_has_port();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &port_)));
+          set_has_port();
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(16)) goto parse_filesize;
+        if (input->ExpectTag(16)) goto parse_disksize;
         break;
       }
 
-      // required int32 filesize = 2;
+      // required int32 disksize = 2;
       case 2: {
         if (tag == 16) {
-         parse_filesize:
-          set_has_filesize();
+         parse_disksize:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &filesize_)));
+                 input, &disksize_)));
+          set_has_disksize();
         } else {
           goto handle_unusual;
         }
@@ -306,33 +270,32 @@ void SystemInformation::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->port(), output);
   }
 
-  // required int32 filesize = 2;
-  if (has_filesize()) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->filesize(), output);
+  // required int32 disksize = 2;
+  if (has_disksize()) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->disksize(), output);
   }
 
-  if (_internal_metadata_.have_unknown_fields()) {
+  if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
   }
   // @@protoc_insertion_point(serialize_end:SystemInformation)
 }
 
-::google::protobuf::uint8* SystemInformation::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::google::protobuf::uint8* SystemInformation::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:SystemInformation)
   // required int32 port = 1;
   if (has_port()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->port(), target);
   }
 
-  // required int32 filesize = 2;
-  if (has_filesize()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->filesize(), target);
+  // required int32 disksize = 2;
+  if (has_disksize()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->disksize(), target);
   }
 
-  if (_internal_metadata_.have_unknown_fields()) {
+  if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
   }
@@ -340,108 +303,71 @@ void SystemInformation::SerializeWithCachedSizes(
   return target;
 }
 
-size_t SystemInformation::RequiredFieldsByteSizeFallback() const {
-// @@protoc_insertion_point(required_fields_byte_size_fallback_start:SystemInformation)
-  size_t total_size = 0;
+int SystemInformation::ByteSize() const {
+  int total_size = 0;
 
-  if (has_port()) {
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     // required int32 port = 1;
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->port());
+    if (has_port()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->port());
+    }
+
+    // required int32 disksize = 2;
+    if (has_disksize()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->disksize());
+    }
+
   }
-
-  if (has_filesize()) {
-    // required int32 filesize = 2;
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->filesize());
-  }
-
-  return total_size;
-}
-size_t SystemInformation::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:SystemInformation)
-  size_t total_size = 0;
-
-  if (((_has_bits_[0] & 0x00000003) ^ 0x00000003) == 0) {  // All required fields are present.
-    // required int32 port = 1;
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->port());
-
-    // required int32 filesize = 2;
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->filesize());
-
-  } else {
-    total_size += RequiredFieldsByteSizeFallback();
-  }
-  if (_internal_metadata_.have_unknown_fields()) {
+  if (!unknown_fields().empty()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         unknown_fields());
   }
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = cached_size;
+  _cached_size_ = total_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void SystemInformation::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:SystemInformation)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  GOOGLE_CHECK_NE(&from, this);
   const SystemInformation* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const SystemInformation>(
-          &from);
+    ::google::protobuf::internal::dynamic_cast_if_available<const SystemInformation*>(
+      &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:SystemInformation)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:SystemInformation)
-    UnsafeMergeFrom(*source);
+    MergeFrom(*source);
   }
 }
 
 void SystemInformation::MergeFrom(const SystemInformation& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:SystemInformation)
-  if (GOOGLE_PREDICT_TRUE(&from != this)) {
-    UnsafeMergeFrom(from);
-  } else {
-    MergeFromFail(__LINE__);
-  }
-}
-
-void SystemInformation::UnsafeMergeFrom(const SystemInformation& from) {
-  GOOGLE_DCHECK(&from != this);
+  GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_port()) {
       set_port(from.port());
     }
-    if (from.has_filesize()) {
-      set_filesize(from.filesize());
+    if (from.has_disksize()) {
+      set_disksize(from.disksize());
     }
   }
-  if (from._internal_metadata_.have_unknown_fields()) {
-    ::google::protobuf::UnknownFieldSet::MergeToInternalMetdata(
-      from.unknown_fields(), &_internal_metadata_);
-  }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
 void SystemInformation::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:SystemInformation)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void SystemInformation::CopyFrom(const SystemInformation& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:SystemInformation)
   if (&from == this) return;
   Clear();
-  UnsafeMergeFrom(from);
+  MergeFrom(from);
 }
 
 bool SystemInformation::IsInitialized() const {
@@ -451,15 +377,13 @@ bool SystemInformation::IsInitialized() const {
 }
 
 void SystemInformation::Swap(SystemInformation* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
-void SystemInformation::InternalSwap(SystemInformation* other) {
-  std::swap(port_, other->port_);
-  std::swap(filesize_, other->filesize_);
-  std::swap(_has_bits_[0], other->_has_bits_[0]);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  std::swap(_cached_size_, other->_cached_size_);
+  if (other != this) {
+    std::swap(port_, other->port_);
+    std::swap(disksize_, other->disksize_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
 }
 
 ::google::protobuf::Metadata SystemInformation::GetMetadata() const {
@@ -470,93 +394,36 @@ void SystemInformation::InternalSwap(SystemInformation* other) {
   return metadata;
 }
 
-#if PROTOBUF_INLINE_NOT_IN_HEADERS
-// SystemInformation
-
-// required int32 port = 1;
-bool SystemInformation::has_port() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-void SystemInformation::set_has_port() {
-  _has_bits_[0] |= 0x00000001u;
-}
-void SystemInformation::clear_has_port() {
-  _has_bits_[0] &= ~0x00000001u;
-}
-void SystemInformation::clear_port() {
-  port_ = 0;
-  clear_has_port();
-}
-::google::protobuf::int32 SystemInformation::port() const {
-  // @@protoc_insertion_point(field_get:SystemInformation.port)
-  return port_;
-}
-void SystemInformation::set_port(::google::protobuf::int32 value) {
-  set_has_port();
-  port_ = value;
-  // @@protoc_insertion_point(field_set:SystemInformation.port)
-}
-
-// required int32 filesize = 2;
-bool SystemInformation::has_filesize() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-void SystemInformation::set_has_filesize() {
-  _has_bits_[0] |= 0x00000002u;
-}
-void SystemInformation::clear_has_filesize() {
-  _has_bits_[0] &= ~0x00000002u;
-}
-void SystemInformation::clear_filesize() {
-  filesize_ = 0;
-  clear_has_filesize();
-}
-::google::protobuf::int32 SystemInformation::filesize() const {
-  // @@protoc_insertion_point(field_get:SystemInformation.filesize)
-  return filesize_;
-}
-void SystemInformation::set_filesize(::google::protobuf::int32 value) {
-  set_has_filesize();
-  filesize_ = value;
-  // @@protoc_insertion_point(field_set:SystemInformation.filesize)
-}
-
-inline const SystemInformation* SystemInformation::internal_default_instance() {
-  return &SystemInformation_default_instance_.get();
-}
-#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 
 // ===================================================================
 
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
+#ifndef _MSC_VER
 const int Packet::kFLAGFieldNumber;
 const int Packet::kSysinfoFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+#endif  // !_MSC_VER
 
 Packet::Packet()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  if (this != internal_default_instance()) protobuf_InitDefaults_Packet_2eproto();
+  : ::google::protobuf::Message() {
   SharedCtor();
   // @@protoc_insertion_point(constructor:Packet)
 }
 
 void Packet::InitAsDefaultInstance() {
-  sysinfo_ = const_cast< ::SystemInformation*>(
-      ::SystemInformation::internal_default_instance());
+  sysinfo_ = const_cast< ::SystemInformation*>(&::SystemInformation::default_instance());
 }
 
 Packet::Packet(const Packet& from)
-  : ::google::protobuf::Message(),
-    _internal_metadata_(NULL) {
+  : ::google::protobuf::Message() {
   SharedCtor();
-  UnsafeMergeFrom(from);
+  MergeFrom(from);
   // @@protoc_insertion_point(copy_constructor:Packet)
 }
 
 void Packet::SharedCtor() {
   _cached_size_ = 0;
-  sysinfo_ = NULL;
   flag_ = 0;
+  sysinfo_ = NULL;
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
 Packet::~Packet() {
@@ -565,7 +432,7 @@ Packet::~Packet() {
 }
 
 void Packet::SharedDtor() {
-  if (this != &Packet_default_instance_.get()) {
+  if (this != default_instance_) {
     delete sysinfo_;
   }
 }
@@ -581,37 +448,30 @@ const ::google::protobuf::Descriptor* Packet::descriptor() {
 }
 
 const Packet& Packet::default_instance() {
-  protobuf_InitDefaults_Packet_2eproto();
-  return *internal_default_instance();
+  if (default_instance_ == NULL) protobuf_AddDesc_Packet_2eproto();
+  return *default_instance_;
 }
 
-::google::protobuf::internal::ExplicitlyConstructed<Packet> Packet_default_instance_;
+Packet* Packet::default_instance_ = NULL;
 
-Packet* Packet::New(::google::protobuf::Arena* arena) const {
-  Packet* n = new Packet;
-  if (arena != NULL) {
-    arena->Own(n);
-  }
-  return n;
+Packet* Packet::New() const {
+  return new Packet;
 }
 
 void Packet::Clear() {
-// @@protoc_insertion_point(message_clear_start:Packet)
-  if (_has_bits_[0 / 32] & 3u) {
+  if (_has_bits_[0 / 32] & 3) {
     flag_ = 0;
     if (has_sysinfo()) {
       if (sysinfo_ != NULL) sysinfo_->::SystemInformation::Clear();
     }
   }
-  _has_bits_.Clear();
-  if (_internal_metadata_.have_unknown_fields()) {
-    mutable_unknown_fields()->Clear();
-  }
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  mutable_unknown_fields()->Clear();
 }
 
 bool Packet::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+#define DO_(EXPRESSION) if (!(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
   // @@protoc_insertion_point(parse_start:Packet)
   for (;;) {
@@ -622,10 +482,10 @@ bool Packet::MergePartialFromCodedStream(
       // required int32 FLAG = 1;
       case 1: {
         if (tag == 8) {
-          set_has_flag();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &flag_)));
+          set_has_flag();
         } else {
           goto handle_unusual;
         }
@@ -679,19 +539,18 @@ void Packet::SerializeWithCachedSizes(
   // optional .SystemInformation sysinfo = 2;
   if (has_sysinfo()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      2, *this->sysinfo_, output);
+      2, this->sysinfo(), output);
   }
 
-  if (_internal_metadata_.have_unknown_fields()) {
+  if (!unknown_fields().empty()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         unknown_fields(), output);
   }
   // @@protoc_insertion_point(serialize_end:Packet)
 }
 
-::google::protobuf::uint8* Packet::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
+::google::protobuf::uint8* Packet::SerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:Packet)
   // required int32 FLAG = 1;
   if (has_flag()) {
@@ -701,11 +560,11 @@ void Packet::SerializeWithCachedSizes(
   // optional .SystemInformation sysinfo = 2;
   if (has_sysinfo()) {
     target = ::google::protobuf::internal::WireFormatLite::
-      InternalWriteMessageNoVirtualToArray(
-        2, *this->sysinfo_, false, target);
+      WriteMessageNoVirtualToArray(
+        2, this->sysinfo(), target);
   }
 
-  if (_internal_metadata_.have_unknown_fields()) {
+  if (!unknown_fields().empty()) {
     target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
         unknown_fields(), target);
   }
@@ -713,61 +572,50 @@ void Packet::SerializeWithCachedSizes(
   return target;
 }
 
-size_t Packet::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:Packet)
-  size_t total_size = 0;
+int Packet::ByteSize() const {
+  int total_size = 0;
 
-  // required int32 FLAG = 1;
-  if (has_flag()) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->flag());
-  }
-  // optional .SystemInformation sysinfo = 2;
-  if (has_sysinfo()) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
-        *this->sysinfo_);
-  }
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // required int32 FLAG = 1;
+    if (has_flag()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::Int32Size(
+          this->flag());
+    }
 
-  if (_internal_metadata_.have_unknown_fields()) {
+    // optional .SystemInformation sysinfo = 2;
+    if (has_sysinfo()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->sysinfo());
+    }
+
+  }
+  if (!unknown_fields().empty()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         unknown_fields());
   }
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = cached_size;
+  _cached_size_ = total_size;
   GOOGLE_SAFE_CONCURRENT_WRITES_END();
   return total_size;
 }
 
 void Packet::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:Packet)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  GOOGLE_CHECK_NE(&from, this);
   const Packet* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const Packet>(
-          &from);
+    ::google::protobuf::internal::dynamic_cast_if_available<const Packet*>(
+      &from);
   if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:Packet)
     ::google::protobuf::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:Packet)
-    UnsafeMergeFrom(*source);
+    MergeFrom(*source);
   }
 }
 
 void Packet::MergeFrom(const Packet& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:Packet)
-  if (GOOGLE_PREDICT_TRUE(&from != this)) {
-    UnsafeMergeFrom(from);
-  } else {
-    MergeFromFail(__LINE__);
-  }
-}
-
-void Packet::UnsafeMergeFrom(const Packet& from) {
-  GOOGLE_DCHECK(&from != this);
+  GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_flag()) {
       set_flag(from.flag());
@@ -776,45 +624,38 @@ void Packet::UnsafeMergeFrom(const Packet& from) {
       mutable_sysinfo()->::SystemInformation::MergeFrom(from.sysinfo());
     }
   }
-  if (from._internal_metadata_.have_unknown_fields()) {
-    ::google::protobuf::UnknownFieldSet::MergeToInternalMetdata(
-      from.unknown_fields(), &_internal_metadata_);
-  }
+  mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
 void Packet::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:Packet)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void Packet::CopyFrom(const Packet& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:Packet)
   if (&from == this) return;
   Clear();
-  UnsafeMergeFrom(from);
+  MergeFrom(from);
 }
 
 bool Packet::IsInitialized() const {
   if ((_has_bits_[0] & 0x00000001) != 0x00000001) return false;
 
   if (has_sysinfo()) {
-    if (!this->sysinfo_->IsInitialized()) return false;
+    if (!this->sysinfo().IsInitialized()) return false;
   }
   return true;
 }
 
 void Packet::Swap(Packet* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
-void Packet::InternalSwap(Packet* other) {
-  std::swap(flag_, other->flag_);
-  std::swap(sysinfo_, other->sysinfo_);
-  std::swap(_has_bits_[0], other->_has_bits_[0]);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  std::swap(_cached_size_, other->_cached_size_);
+  if (other != this) {
+    std::swap(flag_, other->flag_);
+    std::swap(sysinfo_, other->sysinfo_);
+    std::swap(_has_bits_[0], other->_has_bits_[0]);
+    _unknown_fields_.Swap(&other->_unknown_fields_);
+    std::swap(_cached_size_, other->_cached_size_);
+  }
 }
 
 ::google::protobuf::Metadata Packet::GetMetadata() const {
@@ -825,82 +666,6 @@ void Packet::InternalSwap(Packet* other) {
   return metadata;
 }
 
-#if PROTOBUF_INLINE_NOT_IN_HEADERS
-// Packet
-
-// required int32 FLAG = 1;
-bool Packet::has_flag() const {
-  return (_has_bits_[0] & 0x00000001u) != 0;
-}
-void Packet::set_has_flag() {
-  _has_bits_[0] |= 0x00000001u;
-}
-void Packet::clear_has_flag() {
-  _has_bits_[0] &= ~0x00000001u;
-}
-void Packet::clear_flag() {
-  flag_ = 0;
-  clear_has_flag();
-}
-::google::protobuf::int32 Packet::flag() const {
-  // @@protoc_insertion_point(field_get:Packet.FLAG)
-  return flag_;
-}
-void Packet::set_flag(::google::protobuf::int32 value) {
-  set_has_flag();
-  flag_ = value;
-  // @@protoc_insertion_point(field_set:Packet.FLAG)
-}
-
-// optional .SystemInformation sysinfo = 2;
-bool Packet::has_sysinfo() const {
-  return (_has_bits_[0] & 0x00000002u) != 0;
-}
-void Packet::set_has_sysinfo() {
-  _has_bits_[0] |= 0x00000002u;
-}
-void Packet::clear_has_sysinfo() {
-  _has_bits_[0] &= ~0x00000002u;
-}
-void Packet::clear_sysinfo() {
-  if (sysinfo_ != NULL) sysinfo_->::SystemInformation::Clear();
-  clear_has_sysinfo();
-}
-const ::SystemInformation& Packet::sysinfo() const {
-  // @@protoc_insertion_point(field_get:Packet.sysinfo)
-  return sysinfo_ != NULL ? *sysinfo_
-                         : *::SystemInformation::internal_default_instance();
-}
-::SystemInformation* Packet::mutable_sysinfo() {
-  set_has_sysinfo();
-  if (sysinfo_ == NULL) {
-    sysinfo_ = new ::SystemInformation;
-  }
-  // @@protoc_insertion_point(field_mutable:Packet.sysinfo)
-  return sysinfo_;
-}
-::SystemInformation* Packet::release_sysinfo() {
-  // @@protoc_insertion_point(field_release:Packet.sysinfo)
-  clear_has_sysinfo();
-  ::SystemInformation* temp = sysinfo_;
-  sysinfo_ = NULL;
-  return temp;
-}
-void Packet::set_allocated_sysinfo(::SystemInformation* sysinfo) {
-  delete sysinfo_;
-  sysinfo_ = sysinfo;
-  if (sysinfo) {
-    set_has_sysinfo();
-  } else {
-    clear_has_sysinfo();
-  }
-  // @@protoc_insertion_point(field_set_allocated:Packet.sysinfo)
-}
-
-inline const Packet* Packet::internal_default_instance() {
-  return &Packet_default_instance_.get();
-}
-#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
 
 // @@protoc_insertion_point(namespace_scope)
 
