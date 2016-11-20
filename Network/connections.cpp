@@ -1,4 +1,8 @@
 #include "connections.h"
+
+/*
+ * TODO:// Separate opening of socket and accepting connections.
+ */
 void open_socket(unsigned int port) {
 	int socket_fd;
 
