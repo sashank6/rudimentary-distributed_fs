@@ -1,4 +1,5 @@
 #include "connections.h"
+#include "packet.h"
 
 /*
  * TODO:// Separate opening of socket and accepting connections.
@@ -40,7 +41,7 @@ void open_socket(unsigned int port) {
 		}
 
 		Packet packet = deserialize(recd_data);
-		printf("%d\n", packet.flag());
+		process_packet(packet);
 		fclose(read_stream);
 
 	} while (con_fd != -1);
