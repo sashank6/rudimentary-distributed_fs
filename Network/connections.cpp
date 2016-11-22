@@ -26,9 +26,8 @@ void open_socket(unsigned int port) {
 	struct sockaddr_in client_addr;
 	socklen_t client_len = sizeof(client_addr);
 	int con_fd;
-	do {
-		con_fd = accept(socket_fd, (struct sockaddr *) &client_addr,
-				&client_len);
+	while ((con_fd = accept(socket_fd, (struct sockaddr *) &client_addr,
+			&client_len)) != -1) {
 		char ipaddr[INET_ADDRSTRLEN];
 		inet_ntop(AF_INET, &(client_addr.sin_addr), ipaddr, INET_ADDRSTRLEN);
 		printf("IP address of client is: %s\n", ipaddr);
@@ -44,7 +43,7 @@ void open_socket(unsigned int port) {
 		process_packet(packet,ipaddr);
 		fclose(read_stream);
 
-	} while (con_fd != -1);
+	}
 
 	if (con_fd == -1)
 		handle_error("Accept Error");
@@ -82,4 +81,3 @@ void send_message(char *hostname, unsigned int port, Packet packet) {
 	fclose(write_stream);
 	close(socket_fd);
 }
-
