@@ -4,8 +4,6 @@
 #include "Packet.pb.h"
 #include "serialization.h"
 
-using namespace std;
-
 int main() {
 
 	Packet handshake_packet;

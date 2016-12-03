@@ -37,11 +37,11 @@ void open_socket(unsigned int port) {
 		inet_ntop(AF_INET, &(client_addr.sin_addr), ipaddr, INET_ADDRSTRLEN);
 		printf("IP address of client is: %s\n", ipaddr);
 
-		string recd_data;
+		STRING recd_data;
 		FILE *read_stream = fdopen(con_fd, "r");
 		char str[1024];
 		while (fgets(str, 1024, read_stream) != NULL) {
-			recd_data += string(str);
+			recd_data += std::string(str);
 		}
 
 		Packet packet = deserialize(recd_data);
@@ -80,7 +80,7 @@ void send_message(char *hostname, unsigned int port, Packet packet) {
 		handle_error("Connection Error");
 
 	FILE *write_stream = fdopen(socket_fd, "w");
-	string serialized_data = serialize(packet);
+	STRING serialized_data = serialize(packet);
 	fprintf(write_stream, "%s", serialized_data.c_str());
 
 	fclose(write_stream);

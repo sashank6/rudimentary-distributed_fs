@@ -1,6 +1,6 @@
 #include "Packet.pb.h"
 #include "errors.h"
-using namespace std;
-string serialize(Packet packet);
-Packet deserialize(string data);
+#include "types.h"
+std::string serialize(Packet packet);
+Packet deserialize(std::string data);
 

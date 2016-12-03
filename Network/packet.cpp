@@ -1,6 +1,6 @@
 #include "packet.h"
 #include "sysinfo.h"
-void process_packet(Packet packet, string ipaddr) {
+void process_packet(Packet packet, STRING ipaddr) {
 	int flag = packet.flag();
 	switch (flag) {
 

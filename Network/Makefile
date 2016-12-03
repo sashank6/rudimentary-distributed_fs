@@ -1,4 +1,4 @@
-CC = c++
+CC = g++ -Wall -g -std=c++11
 RUNTIME_LIBS = -lprotobuf
 PROTOC=protoc
 PROTOFILES = Packet.proto

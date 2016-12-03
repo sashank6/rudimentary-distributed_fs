@@ -2,8 +2,6 @@
 #include "connections.h"
 #include "ports.h"
 
-using namespace std;
-
 
 int main() {
 
