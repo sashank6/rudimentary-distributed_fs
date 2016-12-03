@@ -1,1 +1,1 @@
-#define CLIENT_DATA_PATH "~/dfs/filedata/"
+#define CLIENT_DATA_PATH "../filedata/"
