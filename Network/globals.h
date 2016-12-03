@@ -1,3 +1,1 @@
-#include <map>
-
-std::map<int, Sysinfo> nodes;
+#define CLIENT_DATA_PATH "~/dfs/filedata/"

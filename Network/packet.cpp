@@ -1,5 +1,6 @@
 #include "packet.h"
 #include "sysinfo.h"
+#include "fileops.h"
 void process_packet(Packet packet, STRING ipaddr) {
 	int flag = packet.flag();
 	switch (flag) {
@@ -31,6 +32,11 @@ void process_packet(Packet packet, STRING ipaddr) {
 		}
 		break;
 	}
+	case WRITE_FILE:{
+		create_file(packet.filedata());
+		break;
+	}
+
 	default:
 		break;
 	}

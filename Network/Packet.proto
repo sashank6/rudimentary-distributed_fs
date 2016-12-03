@@ -12,7 +12,7 @@ message Packet{
 
 message FileData {
 	required string filename=1;
-	required bytes data=2;
+	required string data=2;
 	optional int32 block=3;
 	
 }

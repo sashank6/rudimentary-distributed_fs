@@ -2,7 +2,7 @@ CC = g++ -Wall -std=c++11
 RUNTIME_LIBS = -lprotobuf
 PROTOC=protoc
 PROTOFILES = Packet.proto
-HELPERS = errors.cpp connections.cpp Packet.pb.cc serialization.cpp packet.cpp sysinfo.cpp
+HELPERS = errors.cpp connections.cpp Packet.pb.cc serialization.cpp packet.cpp sysinfo.cpp fileops.cpp
 
 all: compile
 
