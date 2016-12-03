@@ -11,5 +11,5 @@ struct Sysinfo {
 	bool isAlive;
 };
 void process_sysinfo(Packet packet, STRING ipaddr);
-void addDevice(Sysinfo info);
-void displayDevices();
+void addNode(Sysinfo info);
+void displayNodes();

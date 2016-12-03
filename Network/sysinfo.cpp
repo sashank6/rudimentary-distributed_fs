@@ -1,6 +1,6 @@
 #include "sysinfo.h"
 #include<iterator>
-static std::unordered_map<STRING, Sysinfo> deviceList;
+static std::unordered_map<STRING, Sysinfo> nodes;
 //Processes packet to retrieve slave-device information and updates in in-memory dictionary
 void process_sysinfo(Packet packet, STRING ipaddr) {
 
@@ -11,18 +11,18 @@ void process_sysinfo(Packet packet, STRING ipaddr) {
 	sysinfo_struct.ipaddress = ipaddr;
 	sysinfo_struct.port = port;
 	sysinfo_struct.disksize = disksize;
-	addDevice(sysinfo_struct);
-	displayDevices();
+	addNode(sysinfo_struct);
+	displayNodes();
+}
+//Adds node to node dictionary
+void addNode(Sysinfo sysinfo) {
+	nodes[sysinfo.ipaddress] = sysinfo;
 }
 
-void addDevice(Sysinfo sysinfo) {
-	deviceList[sysinfo.ipaddress] = sysinfo;
-}
-
-void displayDevices() {
+void displayNodes() {
 	printf("List of All Slave-devices:\n");
 	std::unordered_map<STRING, Sysinfo>::iterator it;
-	for (it = deviceList.begin(); it != deviceList.end(); ++it) {
+	for (it = nodes.begin(); it != nodes.end(); ++it) {
 		printf("IP: %s PORT: %d SPACEAVBL %d\n", it->first.c_str(),
 				it->second.port, it->second.disksize);
 	}

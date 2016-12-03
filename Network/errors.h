@@ -1,1 +1,2 @@
-void handle_error(char  *error);
+#include "types.h"
+void handle_error(STRING error);
