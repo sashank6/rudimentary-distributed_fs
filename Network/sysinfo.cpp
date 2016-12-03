@@ -8,5 +8,6 @@ void process_sysinfo(Packet packet, string ipaddr) {
 	sysinfo_struct.ipaddress = ipaddr;
 	sysinfo_struct.port = port;
 	sysinfo_struct.disksize = disksize;
+	printf("%d\n", port);
 
 }
