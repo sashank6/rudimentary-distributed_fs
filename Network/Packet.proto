@@ -6,20 +6,21 @@ message SystemInformation{
 message Packet{
 	required int32 FLAG=1;
 	optional SystemInformation sysinfo=2;
-	optional FileData fileData;
-	optional Callback callback;
+	optional FileData fileData=3;
+	optional Callback callback=4;
 }
 
 message FileData {
-	required string filename;
-	optional int32 block = 0;
-	required bytes data;
+	required string filename=1;
+	required bytes data=2;
+	optional int32 block=3;
+	
 }
 
 message Callback {
-	required bool success;
-	required int32 op;
-	optional int32 filesize;
-	optional int32 block;
-	optional bytes data;
+	required bool success=1;
+	required int32 op=2;
+	optional int32 filesize=3;
+	optional int32 block=4;
+	optional bytes data=5;
 }
