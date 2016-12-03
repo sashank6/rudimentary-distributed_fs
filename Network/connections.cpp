@@ -2,6 +2,11 @@
 #include "packet.h"
 
 /*
+ * TODO: Add function to poll slave-devices and update isAlive in devList
+ */
+
+
+/*
  * TODO:// Separate opening of socket and accepting connections.
  */
 void open_socket(unsigned int port) {
@@ -81,3 +86,4 @@ void send_message(char *hostname, unsigned int port, Packet packet) {
 	fclose(write_stream);
 	close(socket_fd);
 }
+
