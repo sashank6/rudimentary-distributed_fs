@@ -19,19 +19,7 @@ void process_packet(Packet packet, STRING ipaddr) {
 				// fail or retry
 			}
 			break;
-		case READ_FILE:{
-//			if (callback.success()) {
-//				if (callback.block() == 0) {
-//					// whole file
-//				} else {
-//					// TODO handle striped file read
-//				}
-//			}
-			FileRequest request = packet.filerequest();
-			std::string data = read_file(request.filename());
-			send_file(request.filename(),data);
-		}
-			break;
+
 		default:
 			break;
 		}
@@ -44,6 +32,14 @@ void process_packet(Packet packet, STRING ipaddr) {
 	case CLIENT_FILE:{
 		FileData filedata=packet.filedata();
 		std::cout<<filedata.data()<<std::endl;
+		break;
+	}
+	case READ_FILE:{
+
+		FileRequest request = packet.filerequest();
+		std::string data = read_file(request.filename());
+		send_file(request.filename(),data);
+		break;
 	}
 
 	default:
