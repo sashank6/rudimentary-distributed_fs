@@ -5,10 +5,11 @@ PROTOC=protoc
 PROTOFILES = Packet.proto
 HELPERS = errors.cpp connections.cpp Packet.pb.cc serialization.cpp packet.cpp sysinfo.cpp fileops.cpp sharedmem.cpp
 WRITE = write.cpp
+WRITE_HELPERS=../Network/sharedmem.cpp nodes.cpp
 
 write:
-	$(CC) $(WRITE) -o write
+	$(CC) $(WRITE) $(WRITE_HELPERS) -o write
 writepi:
-	$(CCPI) $(WRITE) -o write	
+	$(CCPI) $(WRITE) $(WRITE_HELPERS) -o write	
 		
 	

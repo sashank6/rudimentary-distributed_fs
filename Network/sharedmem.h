@@ -11,3 +11,4 @@ struct Sysinfo_shm{
 	bool isAlive;
 };
 void write_shm_nodes(std::unordered_map<STRING,Sysinfo> nodes);
+std::unordered_map<STRING,Sysinfo> read_shm_nodes();

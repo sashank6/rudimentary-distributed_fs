@@ -25,3 +25,23 @@ void write_shm_nodes(std::unordered_map<STRING,Sysinfo> nodes) {
 	}
 
 }
+
+std::unordered_map<STRING,Sysinfo> read_shm_nodes() {
+	std::unordered_map<STRING,Sysinfo> nodes_dict;
+	using namespace boost::interprocess;
+	shared_memory_object shm(open_only, SHM_NODE, read_only);
+	mapped_region region(shm, read_only);
+	struct Sysinfo_shm *mem = static_cast<Sysinfo_shm*>(region.get_address());
+	for (std::size_t i = 0; i < region.get_size() / sizeof(Sysinfo_shm); ++i){
+			Sysinfo buf;
+			buf.ipaddress=std::string(mem[i].ipaddr);
+			buf.port=mem[i].port;
+			buf.isAlive=mem[i].isAlive;
+			buf.disksize=mem[i].filesize;
+			nodes_dict[buf.ipaddress]=buf;
+	}
+	return nodes_dict;
+}
+
+
+

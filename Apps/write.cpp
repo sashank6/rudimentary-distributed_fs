@@ -12,15 +12,12 @@
  */
 #include <boost/interprocess/shared_memory_object.hpp>
 #include <boost/interprocess/mapped_region.hpp>
-#include "../Network/sharedmem.h"
+#include "nodes.h"
+#include<iostream>
 int main() {
-	using namespace boost::interprocess;
-	shared_memory_object shm(open_only, SHM_NODE, read_only);
-	mapped_region region(shm, read_only);
-	struct Sysinfo_shm *mem = static_cast<Sysinfo_shm*>(region.get_address());
-	for (std::size_t i = 0; i < region.get_size() / sizeof(Sysinfo_shm); ++i) {
-		std::cout << mem[i].port << "," << mem[i].filesize<<std::endl;
-	}
+	std::string ip=getBestNode();
+	std::cout<<ip<<std::endl;
+
 	return 0;
 }
 
