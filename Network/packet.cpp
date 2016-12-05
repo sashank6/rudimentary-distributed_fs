@@ -1,6 +1,7 @@
 #include "packet.h"
 #include "sysinfo.h"
 #include "fileops.h"
+#include<iostream>
 void process_packet(Packet packet, STRING ipaddr) {
 	int flag = packet.flag();
 	switch (flag) {
@@ -18,14 +19,18 @@ void process_packet(Packet packet, STRING ipaddr) {
 				// fail or retry
 			}
 			break;
-		case READ_FILE:
-			if (callback.success()) {
-				if (callback.block() == 0) {
-					// whole file
-				} else {
-					// TODO handle striped file read
-				}
-			}
+		case READ_FILE:{
+//			if (callback.success()) {
+//				if (callback.block() == 0) {
+//					// whole file
+//				} else {
+//					// TODO handle striped file read
+//				}
+//			}
+			FileRequest request = packet.filerequest();
+			std::string data = read_file(request.filename());
+			send_file(request.filename(),data);
+		}
 			break;
 		default:
 			break;
@@ -35,6 +40,10 @@ void process_packet(Packet packet, STRING ipaddr) {
 	case WRITE_FILE:{
 		create_file(packet.filedata());
 		break;
+	}
+	case CLIENT_FILE:{
+		FileData filedata=packet.filedata();
+		std::cout<<filedata.data()<<std::endl;
 	}
 
 	default:

@@ -8,6 +8,7 @@ message Packet{
 	optional SystemInformation sysinfo=2;
 	optional FileData fileData=3;
 	optional Callback callback=4;
+	optional FileRequest filerequest=5;
 }
 
 message FileData {
@@ -15,6 +16,9 @@ message FileData {
 	required string data=2;
 	optional int32 block=3;
 	
+}
+message FileRequest{
+	required string filename=1;
 }
 
 message Callback {

@@ -37,6 +37,7 @@ void protobuf_ShutdownFile_Packet_2eproto();
 
 class Callback;
 class FileData;
+class FileRequest;
 class Packet;
 class SystemInformation;
 
@@ -258,6 +259,15 @@ class Packet : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   ::Callback* release_callback();
   void set_allocated_callback(::Callback* callback);
 
+  // optional .FileRequest filerequest = 5;
+  bool has_filerequest() const;
+  void clear_filerequest();
+  static const int kFilerequestFieldNumber = 5;
+  const ::FileRequest& filerequest() const;
+  ::FileRequest* mutable_filerequest();
+  ::FileRequest* release_filerequest();
+  void set_allocated_filerequest(::FileRequest* filerequest);
+
   // @@protoc_insertion_point(class_scope:Packet)
  private:
   inline void set_has_flag();
@@ -268,6 +278,8 @@ class Packet : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   inline void clear_has_filedata();
   inline void set_has_callback();
   inline void clear_has_callback();
+  inline void set_has_filerequest();
+  inline void clear_has_filerequest();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
@@ -275,6 +287,7 @@ class Packet : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   ::SystemInformation* sysinfo_;
   ::FileData* filedata_;
   ::Callback* callback_;
+  ::FileRequest* filerequest_;
   ::google::protobuf::int32 flag_;
   friend void  protobuf_InitDefaults_Packet_2eproto_impl();
   friend void  protobuf_AddDesc_Packet_2eproto_impl();
@@ -415,6 +428,109 @@ class FileData : public ::google::protobuf::Message /* @@protoc_insertion_point(
   void InitAsDefaultInstance();
 };
 extern ::google::protobuf::internal::ExplicitlyConstructed<FileData> FileData_default_instance_;
+
+// -------------------------------------------------------------------
+
+class FileRequest : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:FileRequest) */ {
+ public:
+  FileRequest();
+  virtual ~FileRequest();
+
+  FileRequest(const FileRequest& from);
+
+  inline FileRequest& operator=(const FileRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const FileRequest& default_instance();
+
+  static const FileRequest* internal_default_instance();
+
+  void Swap(FileRequest* other);
+
+  // implements Message ----------------------------------------------
+
+  inline FileRequest* New() const { return New(NULL); }
+
+  FileRequest* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const FileRequest& from);
+  void MergeFrom(const FileRequest& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  size_t ByteSizeLong() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(FileRequest* other);
+  void UnsafeMergeFrom(const FileRequest& from);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required string filename = 1;
+  bool has_filename() const;
+  void clear_filename();
+  static const int kFilenameFieldNumber = 1;
+  const ::std::string& filename() const;
+  void set_filename(const ::std::string& value);
+  void set_filename(const char* value);
+  void set_filename(const char* value, size_t size);
+  ::std::string* mutable_filename();
+  ::std::string* release_filename();
+  void set_allocated_filename(::std::string* filename);
+
+  // @@protoc_insertion_point(class_scope:FileRequest)
+ private:
+  inline void set_has_filename();
+  inline void clear_has_filename();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable int _cached_size_;
+  ::google::protobuf::internal::ArenaStringPtr filename_;
+  friend void  protobuf_InitDefaults_Packet_2eproto_impl();
+  friend void  protobuf_AddDesc_Packet_2eproto_impl();
+  friend void protobuf_AssignDesc_Packet_2eproto();
+  friend void protobuf_ShutdownFile_Packet_2eproto();
+
+  void InitAsDefaultInstance();
+};
+extern ::google::protobuf::internal::ExplicitlyConstructed<FileRequest> FileRequest_default_instance_;
 
 // -------------------------------------------------------------------
 
@@ -784,6 +900,51 @@ inline void Packet::set_allocated_callback(::Callback* callback) {
   // @@protoc_insertion_point(field_set_allocated:Packet.callback)
 }
 
+// optional .FileRequest filerequest = 5;
+inline bool Packet::has_filerequest() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void Packet::set_has_filerequest() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void Packet::clear_has_filerequest() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void Packet::clear_filerequest() {
+  if (filerequest_ != NULL) filerequest_->::FileRequest::Clear();
+  clear_has_filerequest();
+}
+inline const ::FileRequest& Packet::filerequest() const {
+  // @@protoc_insertion_point(field_get:Packet.filerequest)
+  return filerequest_ != NULL ? *filerequest_
+                         : *::FileRequest::internal_default_instance();
+}
+inline ::FileRequest* Packet::mutable_filerequest() {
+  set_has_filerequest();
+  if (filerequest_ == NULL) {
+    filerequest_ = new ::FileRequest;
+  }
+  // @@protoc_insertion_point(field_mutable:Packet.filerequest)
+  return filerequest_;
+}
+inline ::FileRequest* Packet::release_filerequest() {
+  // @@protoc_insertion_point(field_release:Packet.filerequest)
+  clear_has_filerequest();
+  ::FileRequest* temp = filerequest_;
+  filerequest_ = NULL;
+  return temp;
+}
+inline void Packet::set_allocated_filerequest(::FileRequest* filerequest) {
+  delete filerequest_;
+  filerequest_ = filerequest;
+  if (filerequest) {
+    set_has_filerequest();
+  } else {
+    clear_has_filerequest();
+  }
+  // @@protoc_insertion_point(field_set_allocated:Packet.filerequest)
+}
+
 inline const Packet* Packet::internal_default_instance() {
   return &Packet_default_instance_.get();
 }
@@ -925,6 +1086,67 @@ inline void FileData::set_block(::google::protobuf::int32 value) {
 
 inline const FileData* FileData::internal_default_instance() {
   return &FileData_default_instance_.get();
+}
+// -------------------------------------------------------------------
+
+// FileRequest
+
+// required string filename = 1;
+inline bool FileRequest::has_filename() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void FileRequest::set_has_filename() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void FileRequest::clear_has_filename() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void FileRequest::clear_filename() {
+  filename_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_filename();
+}
+inline const ::std::string& FileRequest::filename() const {
+  // @@protoc_insertion_point(field_get:FileRequest.filename)
+  return filename_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void FileRequest::set_filename(const ::std::string& value) {
+  set_has_filename();
+  filename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:FileRequest.filename)
+}
+inline void FileRequest::set_filename(const char* value) {
+  set_has_filename();
+  filename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:FileRequest.filename)
+}
+inline void FileRequest::set_filename(const char* value, size_t size) {
+  set_has_filename();
+  filename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:FileRequest.filename)
+}
+inline ::std::string* FileRequest::mutable_filename() {
+  set_has_filename();
+  // @@protoc_insertion_point(field_mutable:FileRequest.filename)
+  return filename_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* FileRequest::release_filename() {
+  // @@protoc_insertion_point(field_release:FileRequest.filename)
+  clear_has_filename();
+  return filename_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void FileRequest::set_allocated_filename(::std::string* filename) {
+  if (filename != NULL) {
+    set_has_filename();
+  } else {
+    clear_has_filename();
+  }
+  filename_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), filename);
+  // @@protoc_insertion_point(field_set_allocated:FileRequest.filename)
+}
+
+inline const FileRequest* FileRequest::internal_default_instance() {
+  return &FileRequest_default_instance_.get();
 }
 // -------------------------------------------------------------------
 
@@ -1084,6 +1306,8 @@ inline const Callback* Callback::internal_default_instance() {
   return &Callback_default_instance_.get();
 }
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
