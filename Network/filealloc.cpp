@@ -23,11 +23,22 @@ std::string filerec_tostring(filerecord record) {
 	return rec;
 }
 void getFileIP(std::string filename){
-	FILE *fp = fopen(FAT_FILE, "a");
+	std::string ip;
+	FILE *fp = fopen(FAT_FILE, "r");
 	if (fp == NULL)
 		handle_error("Unable to open FAT file");
-	char buf[1024];
-	fscanf(fp,"%s",buf);
+	char filename_buf[1024];
+	char ip_buf[1024];
+	char size_buf[1024];
+	while(!feof(fp)){
+	fscanf(fp,"%s",filename_buf);
+	fscanf(fp,"%s",ip_buf);
+	fscanf(fp,"%s",size_buf);
+	if(std::string(filename_buf)==filename){
+		ip=std::string(ip_buf);
+		break;
+	}
+	}
+	std::cout<<ip<<std::endl;
 	fclose(fp);
-	std::cout<<buf<<std::endl;
 }
