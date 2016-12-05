@@ -13,3 +13,10 @@ std::string readFile(std::string filename) {
 	fclose(fp);
 	return data;
 }
+
+void writeFile(std::string data,std::string filename){
+	filename = TMP_PATH+filename;
+	FILE *fp = fopen(filename.c_str(),"w");
+	fprintf(fp,"%s",data.c_str());
+	fclose(fp);
+}

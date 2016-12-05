@@ -8,3 +8,4 @@ struct filerecord{
 void update_fat(filerecord record);
 void write_fat(filerecord record);
 std::string filerec_tostring(filerecord record);
+void getFileIP(std::string);

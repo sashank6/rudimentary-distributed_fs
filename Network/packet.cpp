@@ -1,6 +1,7 @@
 #include "packet.h"
 #include "sysinfo.h"
 #include "fileops.h"
+#include "../Apps/localfileops.h"
 #include<iostream>
 void process_packet(Packet packet, STRING ipaddr) {
 	int flag = packet.flag();
@@ -31,7 +32,7 @@ void process_packet(Packet packet, STRING ipaddr) {
 	}
 	case CLIENT_FILE:{
 		FileData filedata=packet.filedata();
-		std::cout<<filedata.data()<<std::endl;
+		writeFile(filedata.data(),filedata.filename());
 		break;
 	}
 	case READ_FILE:{

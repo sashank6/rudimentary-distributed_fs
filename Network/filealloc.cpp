@@ -22,3 +22,12 @@ std::string filerec_tostring(filerecord record) {
 	rec += std::to_string(record.size);
 	return rec;
 }
+void getFileIP(std::string filename){
+	FILE *fp = fopen(FAT_FILE, "a");
+	if (fp == NULL)
+		handle_error("Unable to open FAT file");
+	char buf[1024];
+	fscanf(fp,"%s",buf);
+	fclose(fp);
+	std::cout<<buf<<std::endl;
+}
