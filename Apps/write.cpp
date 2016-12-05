@@ -21,10 +21,7 @@ int main(int argc, char *argv[]) {
 	record.host=best_node.ipaddress;
 	record.size=0;
 	update_fat(record);
-
-
-
-//	write_to_node(best_node,"test1","This is a test data");
+	write_to_node(best_node,result_file,data);
 	return 0;
 }
 
