@@ -16,14 +16,7 @@ int main(int argc, char *argv[]) {
 
 	if (argc == 1) {  //Parent process
 		//Remove shared memory on construction and destruction
-		struct shm_remove {
-			shm_remove() {
-				shared_memory_object::remove("MySharedMemory");
-			}
-			~shm_remove() {
-				shared_memory_object::remove("MySharedMemory");
-			}
-		} remover;
+
 
 		//Create a shared memory object.
 		shared_memory_object shm(create_only, "MySharedMemory", read_write);
