@@ -14,7 +14,9 @@ int main(int argc,char*argv[]){
 	FileRequest *filerequest(new FileRequest);
 	filerequest->set_filename(std::string(argv[1]));
 	packet.set_allocated_filerequest(filerequest);
-	getFileIP(std::string(argv[1]));
-	//send_message("192.168.1.90",CLIENT_PORT,packet);
+	std::string fileIP=getFileIP(std::string(argv[1]));
+	char fileip[fileIP.length()+1];
+	strcpy(fileip,fileIP.c_str());
+	send_message(fileip,CLIENT_PORT,packet);
 	return 0;
 }
