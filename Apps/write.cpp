@@ -6,6 +6,7 @@
 #include<iostream>
 #include "nodes.h"
 #include "localfileops.h"
+#include "../Network/filealloc.h"
 int main(int argc, char *argv[]) {
 	if (argc < 3) {
 		std::cout << "Invalid arguments" << std::endl;
@@ -14,8 +15,15 @@ int main(int argc, char *argv[]) {
 	std::string result_file = std::string(argv[2]);
 	std::string data = readFile(read_file);
 	std::cout<<data<<std::endl;
+	Sysinfo best_node=getBestNode();
+	filerecord record;
+	record.filename=result_file;
+	record.host=best_node.ipaddress;
+	record.size=0;
+	update_fat(record);
 
-//	Sysinfo best_node=getBestNode();
+
+
 //	write_to_node(best_node,"test1","This is a test data");
 	return 0;
 }
