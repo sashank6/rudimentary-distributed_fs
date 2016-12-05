@@ -1,7 +1,7 @@
 #include"Packet.pb.h"
 #include "packet.h"
-#include "sysinfo.h"
 #include "connections.h"
+#include "sharedmem.h"
 #include<iterator>
 static std::unordered_map<STRING, Sysinfo> nodes;
 //Processes packet to retrieve slave-device information and updates in in-memory dictionary
@@ -16,6 +16,7 @@ void process_sysinfo(Packet packet, STRING ipaddr) {
 	sysinfo_struct.disksize = disksize;
 	addNode(sysinfo_struct);
 	displayNodes();
+	write_shm_nodes(nodes);
 }
 //Adds node to node dictionary
 void addNode(Sysinfo sysinfo) {
