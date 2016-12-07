@@ -17,7 +17,7 @@ int main(int argc,char*argv[]){
 	filerequest->set_filename(std::string(argv[1]));
 	packet.set_allocated_filerequest(filerequest);
 	std::string x=serialize(packet);
-	bool result = send_message(SERVER_ADDR,SERVER_CONNECT_PORT,packet);
+	int result = send_message(SERVER_ADDR,SERVER_CONNECT_PORT,packet);
 	printf("%d\n",result);
 	return 0;
 }
