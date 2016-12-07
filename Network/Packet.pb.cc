@@ -256,9 +256,9 @@ void protobuf_AddDesc_Packet_2eproto_impl() {
     "\n\005block\030\003 \001(\005\"\037\n\013FileRequest\022\020\n\010filename"
     "\030\001 \002(\t\"V\n\010Callback\022\017\n\007success\030\001 \002(\010\022\n\n\002o"
     "p\030\002 \002(\005\022\020\n\010filesize\030\003 \001(\005\022\r\n\005block\030\004 \001(\005"
-    "\022\014\n\004data\030\005 \001(\014\"\025\n\003Ack\022\016\n\006status\030\001 \002(\010\":\n"
+    "\022\014\n\004data\030\005 \001(\014\"\025\n\003Ack\022\016\n\006status\030\001 \002(\005\":\n"
     "\nFileRecord\022\020\n\010filename\030\001 \002(\t\022\014\n\004host\030\002 "
-    "\002(\t\022\014\n\004size\030\003 \001(\005", 537);
+    "\002(\t\022\014\n\004size\030\003 \002(\005", 537);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "Packet.proto", &protobuf_RegisterTypes);
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_Packet_2eproto);
@@ -2987,7 +2987,7 @@ Ack::Ack(const Ack& from)
 
 void Ack::SharedCtor() {
   _cached_size_ = 0;
-  status_ = false;
+  status_ = 0;
 }
 
 Ack::~Ack() {
@@ -3025,7 +3025,7 @@ Ack* Ack::New(::google::protobuf::Arena* arena) const {
 
 void Ack::Clear() {
 // @@protoc_insertion_point(message_clear_start:Ack)
-  status_ = false;
+  status_ = 0;
   _has_bits_.Clear();
   if (_internal_metadata_.have_unknown_fields()) {
     mutable_unknown_fields()->Clear();
@@ -3042,12 +3042,12 @@ bool Ack::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // required bool status = 1;
+      // required int32 status = 1;
       case 1: {
         if (tag == 8) {
           set_has_status();
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &status_)));
         } else {
           goto handle_unusual;
@@ -3081,9 +3081,9 @@ failure:
 void Ack::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:Ack)
-  // required bool status = 1;
+  // required int32 status = 1;
   if (has_status()) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(1, this->status(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->status(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -3097,9 +3097,9 @@ void Ack::SerializeWithCachedSizes(
     bool deterministic, ::google::protobuf::uint8* target) const {
   (void)deterministic; // Unused
   // @@protoc_insertion_point(serialize_to_array_start:Ack)
-  // required bool status = 1;
+  // required int32 status = 1;
   if (has_status()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(1, this->status(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->status(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -3114,9 +3114,11 @@ size_t Ack::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:Ack)
   size_t total_size = 0;
 
-  // required bool status = 1;
+  // required int32 status = 1;
   if (has_status()) {
-    total_size += 1 + 1;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->status());
   }
   if (_internal_metadata_.have_unknown_fields()) {
     total_size +=
@@ -3209,7 +3211,7 @@ void Ack::InternalSwap(Ack* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // Ack
 
-// required bool status = 1;
+// required int32 status = 1;
 bool Ack::has_status() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -3220,14 +3222,14 @@ void Ack::clear_has_status() {
   _has_bits_[0] &= ~0x00000001u;
 }
 void Ack::clear_status() {
-  status_ = false;
+  status_ = 0;
   clear_has_status();
 }
-bool Ack::status() const {
+::google::protobuf::int32 Ack::status() const {
   // @@protoc_insertion_point(field_get:Ack.status)
   return status_;
 }
-void Ack::set_status(bool value) {
+void Ack::set_status(::google::protobuf::int32 value) {
   set_has_status();
   status_ = value;
   // @@protoc_insertion_point(field_set:Ack.status)
@@ -3366,7 +3368,7 @@ bool FileRecord::MergePartialFromCodedStream(
         break;
       }
 
-      // optional int32 size = 3;
+      // required int32 size = 3;
       case 3: {
         if (tag == 24) {
          parse_size:
@@ -3426,7 +3428,7 @@ void FileRecord::SerializeWithCachedSizes(
       2, this->host(), output);
   }
 
-  // optional int32 size = 3;
+  // required int32 size = 3;
   if (has_size()) {
     ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->size(), output);
   }
@@ -3464,7 +3466,7 @@ void FileRecord::SerializeWithCachedSizes(
         2, this->host(), target);
   }
 
-  // optional int32 size = 3;
+  // required int32 size = 3;
   if (has_size()) {
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->size(), target);
   }
@@ -3495,13 +3497,20 @@ size_t FileRecord::RequiredFieldsByteSizeFallback() const {
         this->host());
   }
 
+  if (has_size()) {
+    // required int32 size = 3;
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->size());
+  }
+
   return total_size;
 }
 size_t FileRecord::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:FileRecord)
   size_t total_size = 0;
 
-  if (((_has_bits_[0] & 0x00000003) ^ 0x00000003) == 0) {  // All required fields are present.
+  if (((_has_bits_[0] & 0x00000007) ^ 0x00000007) == 0) {  // All required fields are present.
     // required string filename = 1;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
@@ -3512,16 +3521,14 @@ size_t FileRecord::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->host());
 
-  } else {
-    total_size += RequiredFieldsByteSizeFallback();
-  }
-  // optional int32 size = 3;
-  if (has_size()) {
+    // required int32 size = 3;
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->size());
-  }
 
+  } else {
+    total_size += RequiredFieldsByteSizeFallback();
+  }
   if (_internal_metadata_.have_unknown_fields()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
@@ -3594,7 +3601,7 @@ void FileRecord::CopyFrom(const FileRecord& from) {
 }
 
 bool FileRecord::IsInitialized() const {
-  if ((_has_bits_[0] & 0x00000003) != 0x00000003) return false;
+  if ((_has_bits_[0] & 0x00000007) != 0x00000007) return false;
 
   return true;
 }
@@ -3731,7 +3738,7 @@ void FileRecord::set_allocated_host(::std::string* host) {
   // @@protoc_insertion_point(field_set_allocated:FileRecord.host)
 }
 
-// optional int32 size = 3;
+// required int32 size = 3;
 bool FileRecord::has_size() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }

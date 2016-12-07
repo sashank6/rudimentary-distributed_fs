@@ -1,5 +1,6 @@
 #include "connections.h"
 #include "packet.h"
+#include<iostream>
 
 /*
  * TODO: Add function to poll slave-devices and update isAlive in devList
@@ -42,11 +43,11 @@ void open_socket(unsigned int port) {
 		STRING recd_data="";
 
 		char buf[3072];
+		memset(buf, 0, strlen(buf));
 		int read_size;
 		while( (read_size = recv(con_fd , buf , 3072 , 0)) > 0 )
 		    {
 		        recd_data+=std::string(buf);
-		        printf("%d\n",strlen(buf));
 		    }
 
 		shutdown(con_fd,SHUT_RD);
@@ -68,7 +69,7 @@ void open_socket(unsigned int port) {
 	close(socket_fd);
 }
 
-bool send_message(char *hostname, unsigned int port, Packet packet) {
+int send_message(char *hostname, unsigned int port, Packet packet) {
 
 	int socket_fd_rec;
 	struct sockaddr_in serv_addr;
@@ -98,13 +99,15 @@ bool send_message(char *hostname, unsigned int port, Packet packet) {
 	shutdown(socket_fd_rec,SHUT_WR);
 	printf("Message Sent\n");
 	STRING recd_data="";
-	char buf[1024];
-	while(read(socket_fd_rec,&buf,1024)>0){
-			recd_data+=std::string(buf);
-	}
-
+	char buf[3072];
+			memset(buf, 0, strlen(buf));
+			int read_size;
+			while( (read_size = recv(socket_fd_rec , buf , 3072 , 0)) > 0 )
+			    {
+			        recd_data+=std::string(buf);
+			    }
 	Packet ack= deserialize(recd_data);
-	bool result = process_ack(ack,std::string(hostname));
+	int result = process_ack(ack,std::string(hostname));
 
 	close(socket_fd_rec);
 	return result;

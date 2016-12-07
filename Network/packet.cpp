@@ -25,11 +25,11 @@ std::string process_packet(Packet packet, STRING ipaddr) {
 		break;
 	}
 	case READ_FILE:{
-
+		std::cout<<"Read request"<<std::endl;
 		FileRequest request = packet.filerequest();
-		std::string file_request_ack = fileRequestAck(request.filename());
+		std::string file_request_ack =fileRequestAck(request.filename());
 		rtr=file_request_ack;
-
+		break;
 	}
 
 	default:
@@ -49,8 +49,8 @@ std::string genAck(bool status){
 	return serialized_str;
 }
 
-bool process_ack(Packet packet,STRING ipaddr){
-	bool result=false;
+int process_ack(Packet packet,STRING ipaddr){
+	int result=0;
 	int flag = packet.flag();
 		switch (flag) {
 
@@ -62,7 +62,7 @@ bool process_ack(Packet packet,STRING ipaddr){
 		case FILE_RECORD:{
 			FileRecord record = packet.filerecord();
 			printf("IP: %s\n",record.host().c_str());
-			result=true;
+			//result=true;
 			break;
 		}
 		default:
@@ -77,7 +77,7 @@ std::string fileRequestAck(std::string filename){
 	Packet packet;
 	if(record.size==-1){
 		Ack *ack(new Ack);
-		ack->set_status(false);
+		ack->set_status(-1);
 		packet.set_allocated_ack(ack);
 		packet.set_flag(ACK_PACKET);
 	}else{
@@ -85,7 +85,7 @@ std::string fileRequestAck(std::string filename){
 		FileRecord *filerecord(new FileRecord);
 		filerecord->set_filename(record.filename);
 		filerecord->set_host(record.host);
-		filerecord->set_size(record.size);
+		filerecord->set_size(1);
 		packet.set_allocated_filerecord(filerecord);
 	}
 	return serialize(packet);

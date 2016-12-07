@@ -777,12 +777,12 @@ class Ack : public ::google::protobuf::Message /* @@protoc_insertion_point(class
 
   // accessors -------------------------------------------------------
 
-  // required bool status = 1;
+  // required int32 status = 1;
   bool has_status() const;
   void clear_status();
   static const int kStatusFieldNumber = 1;
-  bool status() const;
-  void set_status(bool value);
+  ::google::protobuf::int32 status() const;
+  void set_status(::google::protobuf::int32 value);
 
   // @@protoc_insertion_point(class_scope:Ack)
  private:
@@ -792,7 +792,7 @@ class Ack : public ::google::protobuf::Message /* @@protoc_insertion_point(class
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
   mutable int _cached_size_;
-  bool status_;
+  ::google::protobuf::int32 status_;
   friend void  protobuf_InitDefaults_Packet_2eproto_impl();
   friend void  protobuf_AddDesc_Packet_2eproto_impl();
   friend void protobuf_AssignDesc_Packet_2eproto();
@@ -899,7 +899,7 @@ class FileRecord : public ::google::protobuf::Message /* @@protoc_insertion_poin
   ::std::string* release_host();
   void set_allocated_host(::std::string* host);
 
-  // optional int32 size = 3;
+  // required int32 size = 3;
   bool has_size() const;
   void clear_size();
   static const int kSizeFieldNumber = 3;
@@ -1654,7 +1654,7 @@ inline const Callback* Callback::internal_default_instance() {
 
 // Ack
 
-// required bool status = 1;
+// required int32 status = 1;
 inline bool Ack::has_status() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -1665,14 +1665,14 @@ inline void Ack::clear_has_status() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void Ack::clear_status() {
-  status_ = false;
+  status_ = 0;
   clear_has_status();
 }
-inline bool Ack::status() const {
+inline ::google::protobuf::int32 Ack::status() const {
   // @@protoc_insertion_point(field_get:Ack.status)
   return status_;
 }
-inline void Ack::set_status(bool value) {
+inline void Ack::set_status(::google::protobuf::int32 value) {
   set_has_status();
   status_ = value;
   // @@protoc_insertion_point(field_set:Ack.status)
@@ -1793,7 +1793,7 @@ inline void FileRecord::set_allocated_host(::std::string* host) {
   // @@protoc_insertion_point(field_set_allocated:FileRecord.host)
 }
 
-// optional int32 size = 3;
+// required int32 size = 3;
 inline bool FileRecord::has_size() const {
   return (_has_bits_[0] & 0x00000004u) != 0;
 }

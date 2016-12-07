@@ -4,6 +4,8 @@
 #include "../Network/ports.h"
 #include "../Network/errors.h"
 #include "../Network/filealloc.h"
+#include "../Network/serialization.h"
+#include<iostream>
 
 int main(int argc,char*argv[]){
 	if(argc<2){
@@ -14,7 +16,8 @@ int main(int argc,char*argv[]){
 	FileRequest *filerequest(new FileRequest);
 	filerequest->set_filename(std::string(argv[1]));
 	packet.set_allocated_filerequest(filerequest);
-	bool result = send_message("192.168.1.115",SERVER_CONNECT_PORT,packet);
+	std::string x=serialize(packet);
+	bool result = send_message(SERVER_ADDR,SERVER_CONNECT_PORT,packet);
 	printf("%d\n",result);
 	return 0;
 }
