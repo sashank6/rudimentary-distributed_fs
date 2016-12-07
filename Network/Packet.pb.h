@@ -38,6 +38,7 @@ void protobuf_ShutdownFile_Packet_2eproto();
 class Ack;
 class Callback;
 class FileData;
+class FileRecord;
 class FileRequest;
 class Packet;
 class SystemInformation;
@@ -278,6 +279,15 @@ class Packet : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   ::Ack* release_ack();
   void set_allocated_ack(::Ack* ack);
 
+  // optional .FileRecord filerecord = 7;
+  bool has_filerecord() const;
+  void clear_filerecord();
+  static const int kFilerecordFieldNumber = 7;
+  const ::FileRecord& filerecord() const;
+  ::FileRecord* mutable_filerecord();
+  ::FileRecord* release_filerecord();
+  void set_allocated_filerecord(::FileRecord* filerecord);
+
   // @@protoc_insertion_point(class_scope:Packet)
  private:
   inline void set_has_flag();
@@ -292,6 +302,8 @@ class Packet : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   inline void clear_has_filerequest();
   inline void set_has_ack();
   inline void clear_has_ack();
+  inline void set_has_filerecord();
+  inline void clear_has_filerecord();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
@@ -301,6 +313,7 @@ class Packet : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   ::Callback* callback_;
   ::FileRequest* filerequest_;
   ::Ack* ack_;
+  ::FileRecord* filerecord_;
   ::google::protobuf::int32 flag_;
   friend void  protobuf_InitDefaults_Packet_2eproto_impl();
   friend void  protobuf_AddDesc_Packet_2eproto_impl();
@@ -789,6 +802,137 @@ class Ack : public ::google::protobuf::Message /* @@protoc_insertion_point(class
 };
 extern ::google::protobuf::internal::ExplicitlyConstructed<Ack> Ack_default_instance_;
 
+// -------------------------------------------------------------------
+
+class FileRecord : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:FileRecord) */ {
+ public:
+  FileRecord();
+  virtual ~FileRecord();
+
+  FileRecord(const FileRecord& from);
+
+  inline FileRecord& operator=(const FileRecord& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const FileRecord& default_instance();
+
+  static const FileRecord* internal_default_instance();
+
+  void Swap(FileRecord* other);
+
+  // implements Message ----------------------------------------------
+
+  inline FileRecord* New() const { return New(NULL); }
+
+  FileRecord* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const FileRecord& from);
+  void MergeFrom(const FileRecord& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  size_t ByteSizeLong() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(FileRecord* other);
+  void UnsafeMergeFrom(const FileRecord& from);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required string filename = 1;
+  bool has_filename() const;
+  void clear_filename();
+  static const int kFilenameFieldNumber = 1;
+  const ::std::string& filename() const;
+  void set_filename(const ::std::string& value);
+  void set_filename(const char* value);
+  void set_filename(const char* value, size_t size);
+  ::std::string* mutable_filename();
+  ::std::string* release_filename();
+  void set_allocated_filename(::std::string* filename);
+
+  // required string host = 2;
+  bool has_host() const;
+  void clear_host();
+  static const int kHostFieldNumber = 2;
+  const ::std::string& host() const;
+  void set_host(const ::std::string& value);
+  void set_host(const char* value);
+  void set_host(const char* value, size_t size);
+  ::std::string* mutable_host();
+  ::std::string* release_host();
+  void set_allocated_host(::std::string* host);
+
+  // optional int32 size = 3;
+  bool has_size() const;
+  void clear_size();
+  static const int kSizeFieldNumber = 3;
+  ::google::protobuf::int32 size() const;
+  void set_size(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:FileRecord)
+ private:
+  inline void set_has_filename();
+  inline void clear_has_filename();
+  inline void set_has_host();
+  inline void clear_has_host();
+  inline void set_has_size();
+  inline void clear_has_size();
+
+  // helper for ByteSizeLong()
+  size_t RequiredFieldsByteSizeFallback() const;
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable int _cached_size_;
+  ::google::protobuf::internal::ArenaStringPtr filename_;
+  ::google::protobuf::internal::ArenaStringPtr host_;
+  ::google::protobuf::int32 size_;
+  friend void  protobuf_InitDefaults_Packet_2eproto_impl();
+  friend void  protobuf_AddDesc_Packet_2eproto_impl();
+  friend void protobuf_AssignDesc_Packet_2eproto();
+  friend void protobuf_ShutdownFile_Packet_2eproto();
+
+  void InitAsDefaultInstance();
+};
+extern ::google::protobuf::internal::ExplicitlyConstructed<FileRecord> FileRecord_default_instance_;
+
 // ===================================================================
 
 
@@ -1099,6 +1243,51 @@ inline void Packet::set_allocated_ack(::Ack* ack) {
     clear_has_ack();
   }
   // @@protoc_insertion_point(field_set_allocated:Packet.ack)
+}
+
+// optional .FileRecord filerecord = 7;
+inline bool Packet::has_filerecord() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+inline void Packet::set_has_filerecord() {
+  _has_bits_[0] |= 0x00000040u;
+}
+inline void Packet::clear_has_filerecord() {
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline void Packet::clear_filerecord() {
+  if (filerecord_ != NULL) filerecord_->::FileRecord::Clear();
+  clear_has_filerecord();
+}
+inline const ::FileRecord& Packet::filerecord() const {
+  // @@protoc_insertion_point(field_get:Packet.filerecord)
+  return filerecord_ != NULL ? *filerecord_
+                         : *::FileRecord::internal_default_instance();
+}
+inline ::FileRecord* Packet::mutable_filerecord() {
+  set_has_filerecord();
+  if (filerecord_ == NULL) {
+    filerecord_ = new ::FileRecord;
+  }
+  // @@protoc_insertion_point(field_mutable:Packet.filerecord)
+  return filerecord_;
+}
+inline ::FileRecord* Packet::release_filerecord() {
+  // @@protoc_insertion_point(field_release:Packet.filerecord)
+  clear_has_filerecord();
+  ::FileRecord* temp = filerecord_;
+  filerecord_ = NULL;
+  return temp;
+}
+inline void Packet::set_allocated_filerecord(::FileRecord* filerecord) {
+  delete filerecord_;
+  filerecord_ = filerecord;
+  if (filerecord) {
+    set_has_filerecord();
+  } else {
+    clear_has_filerecord();
+  }
+  // @@protoc_insertion_point(field_set_allocated:Packet.filerecord)
 }
 
 inline const Packet* Packet::internal_default_instance() {
@@ -1492,7 +1681,148 @@ inline void Ack::set_status(bool value) {
 inline const Ack* Ack::internal_default_instance() {
   return &Ack_default_instance_.get();
 }
+// -------------------------------------------------------------------
+
+// FileRecord
+
+// required string filename = 1;
+inline bool FileRecord::has_filename() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void FileRecord::set_has_filename() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void FileRecord::clear_has_filename() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void FileRecord::clear_filename() {
+  filename_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_filename();
+}
+inline const ::std::string& FileRecord::filename() const {
+  // @@protoc_insertion_point(field_get:FileRecord.filename)
+  return filename_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void FileRecord::set_filename(const ::std::string& value) {
+  set_has_filename();
+  filename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:FileRecord.filename)
+}
+inline void FileRecord::set_filename(const char* value) {
+  set_has_filename();
+  filename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:FileRecord.filename)
+}
+inline void FileRecord::set_filename(const char* value, size_t size) {
+  set_has_filename();
+  filename_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:FileRecord.filename)
+}
+inline ::std::string* FileRecord::mutable_filename() {
+  set_has_filename();
+  // @@protoc_insertion_point(field_mutable:FileRecord.filename)
+  return filename_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* FileRecord::release_filename() {
+  // @@protoc_insertion_point(field_release:FileRecord.filename)
+  clear_has_filename();
+  return filename_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void FileRecord::set_allocated_filename(::std::string* filename) {
+  if (filename != NULL) {
+    set_has_filename();
+  } else {
+    clear_has_filename();
+  }
+  filename_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), filename);
+  // @@protoc_insertion_point(field_set_allocated:FileRecord.filename)
+}
+
+// required string host = 2;
+inline bool FileRecord::has_host() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void FileRecord::set_has_host() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void FileRecord::clear_has_host() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void FileRecord::clear_host() {
+  host_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_host();
+}
+inline const ::std::string& FileRecord::host() const {
+  // @@protoc_insertion_point(field_get:FileRecord.host)
+  return host_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void FileRecord::set_host(const ::std::string& value) {
+  set_has_host();
+  host_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:FileRecord.host)
+}
+inline void FileRecord::set_host(const char* value) {
+  set_has_host();
+  host_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:FileRecord.host)
+}
+inline void FileRecord::set_host(const char* value, size_t size) {
+  set_has_host();
+  host_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:FileRecord.host)
+}
+inline ::std::string* FileRecord::mutable_host() {
+  set_has_host();
+  // @@protoc_insertion_point(field_mutable:FileRecord.host)
+  return host_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* FileRecord::release_host() {
+  // @@protoc_insertion_point(field_release:FileRecord.host)
+  clear_has_host();
+  return host_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void FileRecord::set_allocated_host(::std::string* host) {
+  if (host != NULL) {
+    set_has_host();
+  } else {
+    clear_has_host();
+  }
+  host_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), host);
+  // @@protoc_insertion_point(field_set_allocated:FileRecord.host)
+}
+
+// optional int32 size = 3;
+inline bool FileRecord::has_size() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void FileRecord::set_has_size() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void FileRecord::clear_has_size() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void FileRecord::clear_size() {
+  size_ = 0;
+  clear_has_size();
+}
+inline ::google::protobuf::int32 FileRecord::size() const {
+  // @@protoc_insertion_point(field_get:FileRecord.size)
+  return size_;
+}
+inline void FileRecord::set_size(::google::protobuf::int32 value) {
+  set_has_size();
+  size_ = value;
+  // @@protoc_insertion_point(field_set:FileRecord.size)
+}
+
+inline const FileRecord* FileRecord::internal_default_instance() {
+  return &FileRecord_default_instance_.get();
+}
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

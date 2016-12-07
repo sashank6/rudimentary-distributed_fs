@@ -13,3 +13,4 @@
 #include <string>
 void open_socket(unsigned int);
 bool send_message(char *hostname, unsigned int port, Packet packet);
+void open_client_sock(unsigned int);

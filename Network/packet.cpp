@@ -3,6 +3,7 @@
 #include "fileops.h"
 #include "../Apps/localfileops.h"
 #include "serialization.h"
+#include "filealloc.h"
 #include<iostream>
 std::string process_packet(Packet packet, STRING ipaddr) {
 	std::string rtr;
@@ -26,9 +27,9 @@ std::string process_packet(Packet packet, STRING ipaddr) {
 	case READ_FILE:{
 
 		FileRequest request = packet.filerequest();
-		std::string data = read_file(request.filename());
-		send_file(request.filename(),data);
-		break;
+		std::string file_request_ack = fileRequestAck(request.filename());
+		rtr=file_request_ack;
+
 	}
 
 	default:
@@ -57,11 +58,37 @@ bool process_ack(Packet packet,STRING ipaddr){
 			result = packet.ack().status();
 			break;
 		}
+
+		case FILE_RECORD:{
+			FileRecord record = packet.filerecord();
+			printf("IP: %s\n",record.host().c_str());
+			result=true;
+			break;
+		}
 		default:
 			break;
 		}
 
 		return result;
+}
+
+std::string fileRequestAck(std::string filename){
+	filerecord record = getFileRecord(filename);
+	Packet packet;
+	if(record.size==-1){
+		Ack *ack(new Ack);
+		ack->set_status(false);
+		packet.set_allocated_ack(ack);
+		packet.set_flag(ACK_PACKET);
+	}else{
+		packet.set_flag(FILE_RECORD);
+		FileRecord *filerecord(new FileRecord);
+		filerecord->set_filename(record.filename);
+		filerecord->set_host(record.host);
+		filerecord->set_size(record.size);
+		packet.set_allocated_filerecord(filerecord);
+	}
+	return serialize(packet);
 }
 
 

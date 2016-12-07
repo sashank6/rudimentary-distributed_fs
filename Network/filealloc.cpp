@@ -22,7 +22,11 @@ std::string filerec_tostring(filerecord record) {
 	rec += std::to_string(record.size);
 	return rec;
 }
-std::string getFileIP(std::string filename){
+filerecord getFileRecord(std::string filename){
+	filerecord record;
+	record.filename="";
+	record.host="";
+	record.size=-1;
 	std::string ip;
 	FILE *fp = fopen(FAT_FILE, "r");
 	if (fp == NULL)
@@ -35,10 +39,12 @@ std::string getFileIP(std::string filename){
 	fscanf(fp,"%s",ip_buf);
 	fscanf(fp,"%s",size_buf);
 	if(std::string(filename_buf)==filename){
-		ip=std::string(ip_buf);
+		record.filename=filename;
+		record.host=std::string(ip_buf);
+		record.size=1;
 		break;
 	}
 	}
 	fclose(fp);
-	return ip;
+	return record;
 }

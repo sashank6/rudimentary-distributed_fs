@@ -3,9 +3,9 @@
 struct filerecord{
 	std::string filename;
 	std::string host;
-	unsigned int size;
+	int size;
 };
 void update_fat(filerecord record);
 void write_fat(filerecord record);
 std::string filerec_tostring(filerecord record);
-std::string getFileIP(std::string);
+filerecord getFileRecord(std::string filename);
