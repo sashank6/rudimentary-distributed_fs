@@ -9,6 +9,7 @@ message Packet{
 	optional FileData fileData=3;
 	optional Callback callback=4;
 	optional FileRequest filerequest=5;
+	optional Ack ack=6;
 }
 
 message FileData {
@@ -28,3 +29,9 @@ message Callback {
 	optional int32 block=4;
 	optional bytes data=5;
 }
+
+message Ack{
+	required bool status=1;
+}
+
+

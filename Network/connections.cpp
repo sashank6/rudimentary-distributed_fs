@@ -9,10 +9,10 @@
 /*
  * TODO:// Separate opening of socket and accepting connections.
  */
-int socket_fd;
+
 void open_socket(unsigned int port) {
 
-
+	int socket_fd;
 	socket_fd = socket(AF_INET, SOCK_STREAM, 0);
 	if (socket_fd == -1)
 		handle_error("Socket Opening Error");
@@ -29,6 +29,7 @@ void open_socket(unsigned int port) {
 	if (listen(socket_fd, 5) == -1)
 		handle_error("listen error");
 
+	for(;;){
 	struct sockaddr_in client_addr;
 	socklen_t client_len = sizeof(client_addr);
 	int con_fd;
@@ -46,22 +47,31 @@ void open_socket(unsigned int port) {
 		}
 
 		Packet packet = deserialize(recd_data);
-		process_packet(packet,ipaddr);
+		Packet ack=process_packet(packet,ipaddr);
 		fclose(read_stream);
+		FILE *write_stream = fdopen(con_fd, "w");
+		STRING serialized_data = serialize(ack);
+		fprintf(write_stream, "%s", serialized_data.c_str());
+
+		fclose(write_stream);
+		close(con_fd);
 
 	}
 
 	if (con_fd == -1)
 		handle_error("Accept Error");
+	}
 
-	close(con_fd);
 	close(socket_fd);
 }
 
 void send_message(char *hostname, unsigned int port, Packet packet) {
 
+	int socket_fd_rec;
 	struct sockaddr_in serv_addr;
-	if (socket_fd == -1)
+
+	socket_fd_rec = socket(AF_INET, SOCK_STREAM, 0);
+	if (socket_fd_rec == -1)
 		handle_error("Socket Opening Error");
 
 	struct hostent *server;
@@ -74,15 +84,15 @@ void send_message(char *hostname, unsigned int port, Packet packet) {
 			server->h_length);
 	serv_addr.sin_port = htons(port);
 
-	if (connect(socket_fd, (struct sockaddr *) &serv_addr, sizeof(serv_addr))
-			== -1)
-		handle_error("Connection Error");
+	if (connect(socket_fd_rec, (struct sockaddr *) &serv_addr, sizeof(serv_addr))
+						== -1)
+			handle_error("Connection Error");
 
-	FILE *write_stream = fdopen(socket_fd, "w");
+	FILE *write_stream = fdopen(socket_fd_rec, "w");
 	STRING serialized_data = serialize(packet);
 	fprintf(write_stream, "%s", serialized_data.c_str());
 
 	fclose(write_stream);
-	close(socket_fd);
+	close(socket_fd_rec);
 }
 

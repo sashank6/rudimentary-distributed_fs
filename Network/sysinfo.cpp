@@ -5,7 +5,7 @@
 #include<iterator>
 static std::unordered_map<STRING, Sysinfo> nodes;
 //Processes packet to retrieve slave-device information and updates in in-memory dictionary
-void process_sysinfo(Packet packet, STRING ipaddr) {
+bool process_sysinfo(Packet packet, STRING ipaddr) {
 
 	SystemInformation sysinfo = packet.sysinfo();
 	int port = sysinfo.port();
@@ -16,6 +16,7 @@ void process_sysinfo(Packet packet, STRING ipaddr) {
 	sysinfo_struct.disksize = disksize;
 	addNode(sysinfo_struct);
 	displayNodes();
+	return true;
 	//write_shm_nodes(nodes);
 }
 //Adds node to node dictionary

@@ -35,6 +35,7 @@ void protobuf_InitDefaults_Packet_2eproto();
 void protobuf_AssignDesc_Packet_2eproto();
 void protobuf_ShutdownFile_Packet_2eproto();
 
+class Ack;
 class Callback;
 class FileData;
 class FileRequest;
@@ -268,6 +269,15 @@ class Packet : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   ::FileRequest* release_filerequest();
   void set_allocated_filerequest(::FileRequest* filerequest);
 
+  // optional .Ack ack = 6;
+  bool has_ack() const;
+  void clear_ack();
+  static const int kAckFieldNumber = 6;
+  const ::Ack& ack() const;
+  ::Ack* mutable_ack();
+  ::Ack* release_ack();
+  void set_allocated_ack(::Ack* ack);
+
   // @@protoc_insertion_point(class_scope:Packet)
  private:
   inline void set_has_flag();
@@ -280,6 +290,8 @@ class Packet : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   inline void clear_has_callback();
   inline void set_has_filerequest();
   inline void clear_has_filerequest();
+  inline void set_has_ack();
+  inline void clear_has_ack();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
@@ -288,6 +300,7 @@ class Packet : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   ::FileData* filedata_;
   ::Callback* callback_;
   ::FileRequest* filerequest_;
+  ::Ack* ack_;
   ::google::protobuf::int32 flag_;
   friend void  protobuf_InitDefaults_Packet_2eproto_impl();
   friend void  protobuf_AddDesc_Packet_2eproto_impl();
@@ -678,6 +691,104 @@ class Callback : public ::google::protobuf::Message /* @@protoc_insertion_point(
 };
 extern ::google::protobuf::internal::ExplicitlyConstructed<Callback> Callback_default_instance_;
 
+// -------------------------------------------------------------------
+
+class Ack : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:Ack) */ {
+ public:
+  Ack();
+  virtual ~Ack();
+
+  Ack(const Ack& from);
+
+  inline Ack& operator=(const Ack& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Ack& default_instance();
+
+  static const Ack* internal_default_instance();
+
+  void Swap(Ack* other);
+
+  // implements Message ----------------------------------------------
+
+  inline Ack* New() const { return New(NULL); }
+
+  Ack* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const Ack& from);
+  void MergeFrom(const Ack& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  size_t ByteSizeLong() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(Ack* other);
+  void UnsafeMergeFrom(const Ack& from);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // required bool status = 1;
+  bool has_status() const;
+  void clear_status();
+  static const int kStatusFieldNumber = 1;
+  bool status() const;
+  void set_status(bool value);
+
+  // @@protoc_insertion_point(class_scope:Ack)
+ private:
+  inline void set_has_status();
+  inline void clear_has_status();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable int _cached_size_;
+  bool status_;
+  friend void  protobuf_InitDefaults_Packet_2eproto_impl();
+  friend void  protobuf_AddDesc_Packet_2eproto_impl();
+  friend void protobuf_AssignDesc_Packet_2eproto();
+  friend void protobuf_ShutdownFile_Packet_2eproto();
+
+  void InitAsDefaultInstance();
+};
+extern ::google::protobuf::internal::ExplicitlyConstructed<Ack> Ack_default_instance_;
+
 // ===================================================================
 
 
@@ -943,6 +1054,51 @@ inline void Packet::set_allocated_filerequest(::FileRequest* filerequest) {
     clear_has_filerequest();
   }
   // @@protoc_insertion_point(field_set_allocated:Packet.filerequest)
+}
+
+// optional .Ack ack = 6;
+inline bool Packet::has_ack() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void Packet::set_has_ack() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void Packet::clear_has_ack() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline void Packet::clear_ack() {
+  if (ack_ != NULL) ack_->::Ack::Clear();
+  clear_has_ack();
+}
+inline const ::Ack& Packet::ack() const {
+  // @@protoc_insertion_point(field_get:Packet.ack)
+  return ack_ != NULL ? *ack_
+                         : *::Ack::internal_default_instance();
+}
+inline ::Ack* Packet::mutable_ack() {
+  set_has_ack();
+  if (ack_ == NULL) {
+    ack_ = new ::Ack;
+  }
+  // @@protoc_insertion_point(field_mutable:Packet.ack)
+  return ack_;
+}
+inline ::Ack* Packet::release_ack() {
+  // @@protoc_insertion_point(field_release:Packet.ack)
+  clear_has_ack();
+  ::Ack* temp = ack_;
+  ack_ = NULL;
+  return temp;
+}
+inline void Packet::set_allocated_ack(::Ack* ack) {
+  delete ack_;
+  ack_ = ack;
+  if (ack) {
+    set_has_ack();
+  } else {
+    clear_has_ack();
+  }
+  // @@protoc_insertion_point(field_set_allocated:Packet.ack)
 }
 
 inline const Packet* Packet::internal_default_instance() {
@@ -1305,7 +1461,40 @@ inline void Callback::set_allocated_data(::std::string* data) {
 inline const Callback* Callback::internal_default_instance() {
   return &Callback_default_instance_.get();
 }
+// -------------------------------------------------------------------
+
+// Ack
+
+// required bool status = 1;
+inline bool Ack::has_status() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void Ack::set_has_status() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void Ack::clear_has_status() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void Ack::clear_status() {
+  status_ = false;
+  clear_has_status();
+}
+inline bool Ack::status() const {
+  // @@protoc_insertion_point(field_get:Ack.status)
+  return status_;
+}
+inline void Ack::set_status(bool value) {
+  set_has_status();
+  status_ = value;
+  // @@protoc_insertion_point(field_set:Ack.status)
+}
+
+inline const Ack* Ack::internal_default_instance() {
+  return &Ack_default_instance_.get();
+}
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

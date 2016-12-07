@@ -3,27 +3,14 @@
 #include "fileops.h"
 #include "../Apps/localfileops.h"
 #include<iostream>
-void process_packet(Packet packet, STRING ipaddr) {
+Packet process_packet(Packet packet, STRING ipaddr) {
+	Packet rtr;
 	int flag = packet.flag();
 	switch (flag) {
 
-	case SYSINFO:
-		process_sysinfo(packet, ipaddr);
-		break;
-	case CALLBACK: {
-		Callback callback = packet.callback();
-		switch (callback.op()) {
-		case WRITE_FILE:
-			if (callback.success()) {
-				//nodes.at(ipaddr).disksize -= callback.filesize;
-			} else {
-				// fail or retry
-			}
-			break;
-
-		default:
-			break;
-		}
+	case SYSINFO:{
+		bool success = process_sysinfo(packet, ipaddr);
+		rtr=genAck(success);
 		break;
 	}
 	case WRITE_FILE:{
@@ -46,5 +33,16 @@ void process_packet(Packet packet, STRING ipaddr) {
 	default:
 		break;
 	}
+	return rtr;
 
 }
+
+Packet genAck(bool status){
+	Packet packet;
+	Ack *ack(new Ack);
+	ack->set_status(status);
+	packet.set_allocated_ack(ack);
+	return packet;
+}
+
+

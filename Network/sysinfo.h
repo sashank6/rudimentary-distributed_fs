@@ -10,6 +10,6 @@ struct Sysinfo {
 	int disksize;
 	bool isAlive;
 };
-void process_sysinfo(Packet packet, STRING ipaddr);
+bool process_sysinfo(Packet packet, STRING ipaddr);
 void addNode(Sysinfo info);
 void displayNodes();
