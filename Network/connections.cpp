@@ -47,11 +47,12 @@ void open_socket(unsigned int port) {
 		}
 
 		Packet packet = deserialize(recd_data);
-		Packet ack=process_packet(packet,ipaddr);
-		fclose(read_stream);
+		std::string ack=process_packet(packet,ipaddr);
+
 		FILE *write_stream = fdopen(con_fd, "w");
-		STRING serialized_data = serialize(ack);
-		fprintf(write_stream, "%s", serialized_data.c_str());
+		if(write_stream==NULL)
+			handle_error("Unable to open write_stream open_sock");
+		fprintf(write_stream, "%s", ack.c_str());
 
 		fclose(write_stream);
 		close(con_fd);
@@ -92,6 +93,14 @@ void send_message(char *hostname, unsigned int port, Packet packet) {
 	STRING serialized_data = serialize(packet);
 	fprintf(write_stream, "%s", serialized_data.c_str());
 
+	STRING recd_data;
+	FILE *read_stream = fdopen(con_fd, "r");
+	char str[1024];
+	while (fgets(str, 1024, read_stream) != NULL) {
+		recd_data += std::string(str);
+	}
+
+	Packet packet = deserialize(recd_data);
 	fclose(write_stream);
 	close(socket_fd_rec);
 }

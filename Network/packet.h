@@ -5,5 +5,7 @@
 #define READ_FILE 3
 #define CALLBACK 4
 #define CLIENT_FILE 5
-Packet process_packet(Packet packet,STRING ipaddress);
-Packet genAck(bool status);
+#define ACK_PACKET 6
+std::string process_packet(Packet packet,STRING ipaddress);
+bool process_ack(Packet packet,STRING ipadress);
+std::string genAck(bool status);

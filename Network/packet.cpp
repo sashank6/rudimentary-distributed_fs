@@ -2,9 +2,10 @@
 #include "sysinfo.h"
 #include "fileops.h"
 #include "../Apps/localfileops.h"
+#include "serialization.h"
 #include<iostream>
-Packet process_packet(Packet packet, STRING ipaddr) {
-	Packet rtr;
+std::string process_packet(Packet packet, STRING ipaddr) {
+	std::string rtr;
 	int flag = packet.flag();
 	switch (flag) {
 
@@ -37,12 +38,14 @@ Packet process_packet(Packet packet, STRING ipaddr) {
 
 }
 
-Packet genAck(bool status){
+std::string genAck(bool status){
 	Packet packet;
 	Ack *ack(new Ack);
 	ack->set_status(status);
 	packet.set_allocated_ack(ack);
-	return packet;
+	packet.set_flag(ACK_PACKET);
+	std::string serialized_str = serialize(packet);
+	return serialized_str;
 }
 
 
