@@ -46,10 +46,12 @@ void open_socket(unsigned int port) {
 		while( (read_size = recv(con_fd , buf , 3072 , 0)) > 0 )
 		    {
 		        recd_data+=std::string(buf);
+		        printf("%d\n",strlen(buf));
 		    }
 
 		shutdown(con_fd,SHUT_RD);
 		Packet packet=deserialize(recd_data);
+		printf("Read data\n");
 		std::string ack = process_packet(packet,std::string(ipaddr));
 		if(send(con_fd,ack.c_str(),ack.length(),0)<0){
 				printf("Failed send\n");
@@ -94,6 +96,7 @@ bool send_message(char *hostname, unsigned int port, Packet packet) {
 		printf("Failed send\n");
 	}
 	shutdown(socket_fd_rec,SHUT_WR);
+	printf("Message Sent\n");
 	STRING recd_data="";
 	char buf[1024];
 	while(read(socket_fd_rec,&buf,1024)>0){
