@@ -9,8 +9,9 @@
 /*
  * TODO:// Separate opening of socket and accepting connections.
  */
+int socket_fd;
 void open_socket(unsigned int port) {
-	int socket_fd;
+
 
 	socket_fd = socket(AF_INET, SOCK_STREAM, 0);
 	if (socket_fd == -1)
@@ -58,10 +59,8 @@ void open_socket(unsigned int port) {
 }
 
 void send_message(char *hostname, unsigned int port, Packet packet) {
-	int socket_fd;
-	struct sockaddr_in serv_addr;
 
-	socket_fd = socket(AF_INET, SOCK_STREAM, 0);
+	struct sockaddr_in serv_addr;
 	if (socket_fd == -1)
 		handle_error("Socket Opening Error");
 

@@ -16,7 +16,7 @@ void process_sysinfo(Packet packet, STRING ipaddr) {
 	sysinfo_struct.disksize = disksize;
 	addNode(sysinfo_struct);
 	displayNodes();
-	write_shm_nodes(nodes);
+	//write_shm_nodes(nodes);
 }
 //Adds node to node dictionary
 void addNode(Sysinfo sysinfo) {
