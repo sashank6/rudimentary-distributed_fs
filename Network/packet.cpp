@@ -48,4 +48,20 @@ std::string genAck(bool status){
 	return serialized_str;
 }
 
+bool process_ack(Packet packet,STRING ipaddr){
+	bool result=false;
+	int flag = packet.flag();
+		switch (flag) {
+
+		case ACK_PACKET:{
+			result = packet.ack().status();
+			break;
+		}
+		default:
+			break;
+		}
+
+		return result;
+}
+
 

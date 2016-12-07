@@ -3,6 +3,7 @@
 #include "errors.h"
 #include "Packet.pb.h"
 #include "serialization.h"
+#include<iostream>
 
 int main() {
 
@@ -12,7 +13,8 @@ int main() {
 	sysinfo->set_port(CLIENT_PORT);
 	sysinfo->set_disksize(1000);
 	handshake_packet.set_allocated_sysinfo(sysinfo);
-	send_message("192.168.1.115", SERVER_CONNECT_PORT, handshake_packet);
+	bool result=send_message("192.168.1.115", SERVER_CONNECT_PORT, handshake_packet);
+	std::cout<<result<<std::endl;
 	open_socket(CLIENT_PORT);
 
 

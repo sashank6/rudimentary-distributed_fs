@@ -66,7 +66,7 @@ void open_socket(unsigned int port) {
 	close(socket_fd);
 }
 
-void send_message(char *hostname, unsigned int port, Packet packet) {
+bool send_message(char *hostname, unsigned int port, Packet packet) {
 
 	int socket_fd_rec;
 	struct sockaddr_in serv_addr;
@@ -94,14 +94,16 @@ void send_message(char *hostname, unsigned int port, Packet packet) {
 	fprintf(write_stream, "%s", serialized_data.c_str());
 
 	STRING recd_data;
-	FILE *read_stream = fdopen(con_fd, "r");
+	FILE *read_stream = fdopen(socket_fd_rec, "r");
 	char str[1024];
 	while (fgets(str, 1024, read_stream) != NULL) {
 		recd_data += std::string(str);
 	}
 
-	Packet packet = deserialize(recd_data);
+	Packet ack= deserialize(recd_data);
+	bool result = process_ack(ack,std::string(hostname));
 	fclose(write_stream);
 	close(socket_fd_rec);
+	return result;
 }
 
