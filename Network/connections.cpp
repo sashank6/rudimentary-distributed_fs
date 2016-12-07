@@ -39,22 +39,22 @@ void open_socket(unsigned int port) {
 		inet_ntop(AF_INET, &(client_addr.sin_addr), ipaddr, INET_ADDRSTRLEN);
 		printf("IP address of client is: %s\n", ipaddr);
 
-		STRING recd_data;
-		FILE *read_stream = fdopen(con_fd, "r");
-		char str[1024];
-		while (fgets(str, 1024, read_stream) != NULL) {
-			recd_data += std::string(str);
+		STRING recd_data="";
+
+		char buf[3072];
+		int read_size;
+		while( (read_size = recv(con_fd , buf , 3072 , 0)) > 0 )
+		    {
+		        recd_data+=std::string(buf);
+		    }
+
+		shutdown(con_fd,SHUT_RD);
+		Packet packet=deserialize(recd_data);
+		std::string ack = process_packet(packet,std::string(ipaddr));
+		if(send(con_fd,ack.c_str(),ack.length(),0)<0){
+				printf("Failed send\n");
 		}
 
-		Packet packet = deserialize(recd_data);
-		std::string ack=process_packet(packet,ipaddr);
-
-		FILE *write_stream = fdopen(con_fd, "w");
-		if(write_stream==NULL)
-			handle_error("Unable to open write_stream open_sock");
-		fprintf(write_stream, "%s", ack.c_str());
-
-		fclose(write_stream);
 		close(con_fd);
 
 	}
@@ -89,20 +89,20 @@ bool send_message(char *hostname, unsigned int port, Packet packet) {
 						== -1)
 			handle_error("Connection Error");
 
-	FILE *write_stream = fdopen(socket_fd_rec, "w");
 	STRING serialized_data = serialize(packet);
-	fprintf(write_stream, "%s", serialized_data.c_str());
-
-	STRING recd_data;
-	FILE *read_stream = fdopen(socket_fd_rec, "r");
-	char str[1024];
-	while (fgets(str, 1024, read_stream) != NULL) {
-		recd_data += std::string(str);
+	if(send(socket_fd_rec,serialized_data.c_str(),serialized_data.length(),0)<0){
+		printf("Failed send\n");
+	}
+	shutdown(socket_fd_rec,SHUT_WR);
+	STRING recd_data="";
+	char buf[1024];
+	while(read(socket_fd_rec,&buf,1024)>0){
+			recd_data+=std::string(buf);
 	}
 
 	Packet ack= deserialize(recd_data);
 	bool result = process_ack(ack,std::string(hostname));
-	fclose(write_stream);
+
 	close(socket_fd_rec);
 	return result;
 }
