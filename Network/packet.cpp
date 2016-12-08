@@ -33,8 +33,14 @@ std::string process_packet(Packet packet, STRING ipaddr) {
 	}
 	case UPDATE_FILE_LIST:{
 		FileList files=packet.filelist();
-		for(int i=0;i<files.filename_size();i++)
-			std::cout<<files.filename(i)<<std::endl;
+		for(int i=0;i<files.filename_size();i++){
+			filerecord record;
+			record.filename = files.filename(i);
+			record.host=ipaddr;
+			record.size=1;
+	    	update_fat(record);
+		}
+		rtr=genAck(1);
 		break;
 	}
 
