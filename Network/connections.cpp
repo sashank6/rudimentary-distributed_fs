@@ -70,7 +70,7 @@ void open_socket(unsigned int port) {
 	close(socket_fd);
 }
 
-int send_message(char *hostname, unsigned int port, Packet packet) {
+Packet send_message(char *hostname, unsigned int port, Packet packet) {
 
 	int socket_fd_rec;
 	struct sockaddr_in serv_addr;
@@ -108,9 +108,7 @@ int send_message(char *hostname, unsigned int port, Packet packet) {
 
 			std::cout<<recd_data.length()<<std::endl;
 	Packet ack= deserialize(recd_data);
-	int result = process_ack(ack,std::string(hostname));
-
 	close(socket_fd_rec);
-	return result;
+	return ack;
 }
 

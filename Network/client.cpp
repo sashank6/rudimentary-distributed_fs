@@ -14,9 +14,9 @@ int main() {
 	sysinfo->set_port(CLIENT_PORT);
 	sysinfo->set_disksize(1000);
 	handshake_packet.set_allocated_sysinfo(sysinfo);
-	int result=send_message(SERVER_ADDR, SERVER_CONNECT_PORT, handshake_packet);
+	Packet ack=send_message(SERVER_ADDR, SERVER_CONNECT_PORT, handshake_packet);
 	Packet pck=getFileList();
-	result=send_message(SERVER_ADDR,SERVER_CONNECT_PORT,pck);
+	ack=send_message(SERVER_ADDR,SERVER_CONNECT_PORT,pck);
 	open_socket(CLIENT_PORT);
 
 

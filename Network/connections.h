@@ -12,5 +12,5 @@
 #include "serialization.h"
 #include <string>
 void open_socket(unsigned int);
-int send_message(char *hostname, unsigned int port, Packet packet);
+Packet send_message(char *hostname, unsigned int port, Packet packet);
 void open_client_sock(unsigned int);

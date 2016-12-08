@@ -24,7 +24,7 @@ std::string process_packet(Packet packet, STRING ipaddr) {
 		writeFile(filedata.data(),filedata.filename());
 		break;
 	}
-	case READ_FILE:{
+	case FILE_REQUEST:{
 		std::cout<<"Read request"<<std::endl;
 		FileRequest request = packet.filerequest();
 		std::string file_request_ack =fileRequestAck(request.filename());
@@ -41,6 +41,12 @@ std::string process_packet(Packet packet, STRING ipaddr) {
 	    	update_fat(record);
 		}
 		rtr=genAck(1);
+		break;
+	}
+	case READ_FILE:{
+		FileRequest request = packet.filerequest();
+		std::string data = read_file(request.filename());
+		rtr = genDataPacket(request.filename(),data);
 		break;
 	}
 
@@ -72,9 +78,7 @@ int process_ack(Packet packet,STRING ipaddr){
 		}
 
 		case FILE_RECORD:{
-			FileRecord record = packet.filerecord();
-			printf("IP: %s\n",record.host().c_str());
-			//result=true;
+			result=1;
 			break;
 		}
 		default:
@@ -100,6 +104,14 @@ std::string fileRequestAck(std::string filename){
 		filerecord->set_size(1);
 		packet.set_allocated_filerecord(filerecord);
 	}
+	return serialize(packet);
+}
+std::string genDataPacket(std::string filename,std::string data){
+	Packet packet;
+	FileData *filedata(new FileData);
+	filedata->set_filename(filename);
+	filedata->set_data(data);
+	packet.set_allocated_filedata(filedata);
 	return serialize(packet);
 }
 

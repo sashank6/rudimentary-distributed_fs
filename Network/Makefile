@@ -4,9 +4,9 @@ RUNTIME_LIBS = -lprotobuf
 PROTOC=protoc
 PROTOFILES = Packet.proto
 HELPERS = errors.cpp connections.cpp Packet.pb.cc serialization.cpp packet.cpp sysinfo.cpp fileops.cpp filealloc.cpp ../Apps/localfileops.cpp
-
 all: compile
 pi: compilepi
+
 
 pre-compile:
 	$(PROTOC) --cpp_out=. $(PROTOFILES)

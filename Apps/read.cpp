@@ -12,12 +12,27 @@ int main(int argc,char*argv[]){
 		handle_error("Invalid number of arguments");
 	}
 	Packet packet;
-	packet.set_flag(READ_FILE);
+	packet.set_flag(FILE_REQUEST);
 	FileRequest *filerequest(new FileRequest);
 	filerequest->set_filename(std::string(argv[1]));
 	packet.set_allocated_filerequest(filerequest);
-	std::string x=serialize(packet);
-	int result = send_message(SERVER_ADDR,SERVER_CONNECT_PORT,packet);
-	printf("%d\n",result);
+	Packet pck = send_message(SERVER_ADDR,SERVER_CONNECT_PORT,packet);
+	int result = process_ack(pck,SERVER_ADDR);
+	if(result==1){
+		FileRecord record = pck.filerecord();
+		Packet pack;
+		pack.set_flag(READ_FILE);
+		FileRequest *request(new FileRequest);
+		request->set_filename(record.filename());
+		pack.set_allocated_filerequest(request);
+		char adr[record.host().length()];
+		strcpy(adr,record.host().c_str());
+		Packet data = send_message(adr,CLIENT_PORT,pack);
+
+	}else{
+		std::cout<<"No such file exists"<<std::endl;
+	}
+
+
 	return 0;
 }
