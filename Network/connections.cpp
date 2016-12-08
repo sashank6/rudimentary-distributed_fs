@@ -42,13 +42,12 @@ void open_socket(unsigned int port) {
 
 		STRING recd_data="";
 
-		char buf[3072];
-		memset(buf, 0, strlen(buf));
-		int read_size;
-		while( (read_size = recv(con_fd , buf , 3072 , 0)) > 0 )
-		    {
-		        recd_data+=std::string(buf);
-		    }
+		char buf[1024];
+		memset(buf,0,sizeof(buf));
+		while(read(con_fd,&buf,1024)>0){
+			 		recd_data+=std::string(buf);
+			 		memset(buf,0,sizeof(buf));
+		}
 
 		shutdown(con_fd,SHUT_RD);
 		Packet packet=deserialize(recd_data);
@@ -106,7 +105,7 @@ Packet send_message(char *hostname, unsigned int port, Packet packet) {
 	 			recd_data+=std::string(buf);
 	  }
 
-			std::cout<<recd_data.length()<<std::endl;
+	std::cout<<recd_data.length()<<std::endl;
 	Packet ack= deserialize(recd_data);
 	close(socket_fd_rec);
 	return ack;

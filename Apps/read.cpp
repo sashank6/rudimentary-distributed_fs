@@ -5,6 +5,7 @@
 #include "../Network/errors.h"
 #include "../Network/filealloc.h"
 #include "../Network/serialization.h"
+#include "localfileops.h"
 #include<iostream>
 
 int main(int argc,char*argv[]){
@@ -28,7 +29,7 @@ int main(int argc,char*argv[]){
 		char adr[record.host().length()];
 		strcpy(adr,record.host().c_str());
 		Packet data = send_message(adr,CLIENT_PORT,pack);
-
+		writeFile(data.filedata().data(),record.filename());
 	}else{
 		std::cout<<"No such file exists"<<std::endl;
 	}

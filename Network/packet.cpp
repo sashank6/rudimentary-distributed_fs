@@ -57,7 +57,7 @@ std::string process_packet(Packet packet, STRING ipaddr) {
 
 }
 
-std::string genAck(bool status){
+std::string genAck(int status){
 	Packet packet;
 	Ack *ack(new Ack);
 	ack->set_status(status);
@@ -112,6 +112,7 @@ std::string genDataPacket(std::string filename,std::string data){
 	filedata->set_filename(filename);
 	filedata->set_data(data);
 	packet.set_allocated_filedata(filedata);
+	packet.set_flag(FILE_DATA);
 	return serialize(packet);
 }
 
