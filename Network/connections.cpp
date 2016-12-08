@@ -103,6 +103,7 @@ Packet send_message(char *hostname, unsigned int port, Packet packet) {
 	memset(buf,0,sizeof(buf));
 	 while(read(socket_fd_rec,&buf,1024)>0){
 	 			recd_data+=std::string(buf);
+	 			memset(buf,0,sizeof(buf));
 	  }
 
 	std::cout<<recd_data.length()<<std::endl;
