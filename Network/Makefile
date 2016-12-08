@@ -1,9 +1,9 @@
-CC = g++ -Wall -std=c++11 -I /usr/local/Cellar/boost/
-CCPI = g++ -Wall -std=c++11 -I /usr/local/Cellar/boost_1_62_0/ -lrt
+CC = g++ -Wall -std=c++11
+CCPI = g++ -Wall -std=c++11
 RUNTIME_LIBS = -lprotobuf
 PROTOC=protoc
 PROTOFILES = Packet.proto
-HELPERS = errors.cpp connections.cpp Packet.pb.cc serialization.cpp packet.cpp sysinfo.cpp fileops.cpp sharedmem.cpp filealloc.cpp ../Apps/localfileops.cpp
+HELPERS = errors.cpp connections.cpp Packet.pb.cc serialization.cpp packet.cpp sysinfo.cpp fileops.cpp filealloc.cpp ../Apps/localfileops.cpp
 
 all: compile
 pi: compilepi
