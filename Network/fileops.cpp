@@ -68,4 +68,25 @@ Packet getFileList(){
 	  return packet;
 
 }
+std::set<std::string> getLocalFileList(){
+	std::set<std::string> s;
+		DIR *dp;
+		  struct dirent *ep;
+		  dp = opendir ("../filedata");
+
+		  if (dp != NULL)
+		  {
+		    while (ep = readdir (dp)){
+		    	std::string filename=std::string(ep->d_name);
+		    	if(filename[0]!='.')
+		      s.insert(filename);
+		    }
+
+		    (void) closedir (dp);
+		  }
+		  else
+		    perror ("Couldn't open the directory");
+
+		  return s;
+}
 

@@ -6,11 +6,18 @@
 #include "../Network/filealloc.h"
 #include "../Network/serialization.h"
 #include "localfileops.h"
+#include "../Network/fileops.h"
+#include<set>
 #include<iostream>
 
 int main(int argc,char*argv[]){
 	if(argc<2){
 		handle_error("Invalid number of arguments");
+	}
+	std::set<std::string> filenames=getLocalFileList();
+	if(filenames.count(std::string(argv[1]))==1){
+		std::cout<<"File present on local"<<std::endl;
+		return 0;
 	}
 	Packet packet;
 	packet.set_flag(FILE_REQUEST);
