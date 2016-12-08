@@ -42,9 +42,9 @@ void open_socket(unsigned int port) {
 
 		STRING recd_data="";
 
-		char buf[1024];
+		char buf[16*1024];
 		memset(buf,0,sizeof(buf));
-		while(read(con_fd,&buf,1024)>0){
+		while(read(con_fd,&buf,16*1024)>0){
 			 		recd_data+=std::string(buf);
 			 		memset(buf,0,sizeof(buf));
 		}
@@ -99,9 +99,9 @@ Packet send_message(char *hostname, unsigned int port, Packet packet) {
 	shutdown(socket_fd_rec,SHUT_WR);
 	printf("Message Sent\n");
 	STRING recd_data="";
-	char buf[1024];
+	char buf[16*1024];
 	memset(buf,0,sizeof(buf));
-	 while(read(socket_fd_rec,&buf,1024)>0){
+	 while(read(socket_fd_rec,&buf,16*1024)>0){
 	 			recd_data+=std::string(buf);
 	 			memset(buf,0,sizeof(buf));
 	  }

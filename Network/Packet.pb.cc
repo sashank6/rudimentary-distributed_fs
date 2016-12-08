@@ -278,7 +278,7 @@ void protobuf_AddDesc_Packet_2eproto_impl() {
     "st\030\005 \001(\0132\014.FileRequest\022\021\n\003ack\030\006 \001(\0132\004.Ac"
     "k\022\037\n\nfilerecord\030\007 \001(\0132\013.FileRecord\022\033\n\010fi"
     "lelist\030\010 \001(\0132\t.FileList\"9\n\010FileData\022\020\n\010f"
-    "ilename\030\001 \002(\t\022\014\n\004data\030\002 \002(\t\022\r\n\005block\030\003 \001"
+    "ilename\030\001 \002(\t\022\014\n\004data\030\002 \002(\014\022\r\n\005block\030\003 \001"
     "(\005\"\037\n\013FileRequest\022\020\n\010filename\030\001 \002(\t\"V\n\010C"
     "allback\022\017\n\007success\030\001 \002(\010\022\n\n\002op\030\002 \002(\005\022\020\n\010"
     "filesize\030\003 \001(\005\022\r\n\005block\030\004 \001(\005\022\014\n\004data\030\005 "
@@ -1738,16 +1738,12 @@ bool FileData::MergePartialFromCodedStream(
         break;
       }
 
-      // required string data = 2;
+      // required bytes data = 2;
       case 2: {
         if (tag == 18) {
          parse_data:
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+          DO_(::google::protobuf::internal::WireFormatLite::ReadBytes(
                 input, this->mutable_data()));
-          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-            this->data().data(), this->data().length(),
-            ::google::protobuf::internal::WireFormat::PARSE,
-            "FileData.data");
         } else {
           goto handle_unusual;
         }
@@ -1805,13 +1801,9 @@ void FileData::SerializeWithCachedSizes(
       1, this->filename(), output);
   }
 
-  // required string data = 2;
+  // required bytes data = 2;
   if (has_data()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->data().data(), this->data().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "FileData.data");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+    ::google::protobuf::internal::WireFormatLite::WriteBytesMaybeAliased(
       2, this->data(), output);
   }
 
@@ -1842,14 +1834,10 @@ void FileData::SerializeWithCachedSizes(
         1, this->filename(), target);
   }
 
-  // required string data = 2;
+  // required bytes data = 2;
   if (has_data()) {
-    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
-      this->data().data(), this->data().length(),
-      ::google::protobuf::internal::WireFormat::SERIALIZE,
-      "FileData.data");
     target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+      ::google::protobuf::internal::WireFormatLite::WriteBytesToArray(
         2, this->data(), target);
   }
 
@@ -1878,9 +1866,9 @@ size_t FileData::RequiredFieldsByteSizeFallback() const {
   }
 
   if (has_data()) {
-    // required string data = 2;
+    // required bytes data = 2;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
+      ::google::protobuf::internal::WireFormatLite::BytesSize(
         this->data());
   }
 
@@ -1896,9 +1884,9 @@ size_t FileData::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->filename());
 
-    // required string data = 2;
+    // required bytes data = 2;
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
+      ::google::protobuf::internal::WireFormatLite::BytesSize(
         this->data());
 
   } else {
@@ -2066,7 +2054,7 @@ void FileData::set_allocated_filename(::std::string* filename) {
   // @@protoc_insertion_point(field_set_allocated:FileData.filename)
 }
 
-// required string data = 2;
+// required bytes data = 2;
 bool FileData::has_data() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -2094,7 +2082,7 @@ void FileData::set_data(const char* value) {
   data_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:FileData.data)
 }
-void FileData::set_data(const char* value, size_t size) {
+void FileData::set_data(const void* value, size_t size) {
   set_has_data();
   data_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));

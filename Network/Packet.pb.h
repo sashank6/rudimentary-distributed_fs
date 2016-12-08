@@ -422,14 +422,14 @@ class FileData : public ::google::protobuf::Message /* @@protoc_insertion_point(
   ::std::string* release_filename();
   void set_allocated_filename(::std::string* filename);
 
-  // required string data = 2;
+  // required bytes data = 2;
   bool has_data() const;
   void clear_data();
   static const int kDataFieldNumber = 2;
   const ::std::string& data() const;
   void set_data(const ::std::string& value);
   void set_data(const char* value);
-  void set_data(const char* value, size_t size);
+  void set_data(const void* value, size_t size);
   ::std::string* mutable_data();
   ::std::string* release_data();
   void set_allocated_data(::std::string* data);
@@ -1514,7 +1514,7 @@ inline void FileData::set_allocated_filename(::std::string* filename) {
   // @@protoc_insertion_point(field_set_allocated:FileData.filename)
 }
 
-// required string data = 2;
+// required bytes data = 2;
 inline bool FileData::has_data() const {
   return (_has_bits_[0] & 0x00000002u) != 0;
 }
@@ -1542,7 +1542,7 @@ inline void FileData::set_data(const char* value) {
   data_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:FileData.data)
 }
-inline void FileData::set_data(const char* value, size_t size) {
+inline void FileData::set_data(const void* value, size_t size) {
   set_has_data();
   data_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
