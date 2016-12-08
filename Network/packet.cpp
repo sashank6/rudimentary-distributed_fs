@@ -31,6 +31,12 @@ std::string process_packet(Packet packet, STRING ipaddr) {
 		rtr=file_request_ack;
 		break;
 	}
+	case UPDATE_FILE_LIST:{
+		FileList files=packet.filelist();
+		for(int i=0;i<files.filename_size();i++)
+			std::cout<<files.filename(i)<<std::endl;
+		break;
+	}
 
 	default:
 		break;

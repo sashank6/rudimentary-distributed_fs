@@ -38,6 +38,7 @@ void protobuf_ShutdownFile_Packet_2eproto();
 class Ack;
 class Callback;
 class FileData;
+class FileList;
 class FileRecord;
 class FileRequest;
 class Packet;
@@ -288,6 +289,15 @@ class Packet : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   ::FileRecord* release_filerecord();
   void set_allocated_filerecord(::FileRecord* filerecord);
 
+  // optional .FileList filelist = 8;
+  bool has_filelist() const;
+  void clear_filelist();
+  static const int kFilelistFieldNumber = 8;
+  const ::FileList& filelist() const;
+  ::FileList* mutable_filelist();
+  ::FileList* release_filelist();
+  void set_allocated_filelist(::FileList* filelist);
+
   // @@protoc_insertion_point(class_scope:Packet)
  private:
   inline void set_has_flag();
@@ -304,6 +314,8 @@ class Packet : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   inline void clear_has_ack();
   inline void set_has_filerecord();
   inline void clear_has_filerecord();
+  inline void set_has_filelist();
+  inline void clear_has_filelist();
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::HasBits<1> _has_bits_;
@@ -314,6 +326,7 @@ class Packet : public ::google::protobuf::Message /* @@protoc_insertion_point(cl
   ::FileRequest* filerequest_;
   ::Ack* ack_;
   ::FileRecord* filerecord_;
+  ::FileList* filelist_;
   ::google::protobuf::int32 flag_;
   friend void  protobuf_InitDefaults_Packet_2eproto_impl();
   friend void  protobuf_AddDesc_Packet_2eproto_impl();
@@ -933,6 +946,111 @@ class FileRecord : public ::google::protobuf::Message /* @@protoc_insertion_poin
 };
 extern ::google::protobuf::internal::ExplicitlyConstructed<FileRecord> FileRecord_default_instance_;
 
+// -------------------------------------------------------------------
+
+class FileList : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:FileList) */ {
+ public:
+  FileList();
+  virtual ~FileList();
+
+  FileList(const FileList& from);
+
+  inline FileList& operator=(const FileList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const FileList& default_instance();
+
+  static const FileList* internal_default_instance();
+
+  void Swap(FileList* other);
+
+  // implements Message ----------------------------------------------
+
+  inline FileList* New() const { return New(NULL); }
+
+  FileList* New(::google::protobuf::Arena* arena) const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const FileList& from);
+  void MergeFrom(const FileList& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  size_t ByteSizeLong() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
+    return InternalSerializeWithCachedSizesToArray(false, output);
+  }
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  void InternalSwap(FileList* other);
+  void UnsafeMergeFrom(const FileList& from);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return _internal_metadata_.arena();
+  }
+  inline void* MaybeArenaPtr() const {
+    return _internal_metadata_.raw_arena_ptr();
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated string filename = 1;
+  int filename_size() const;
+  void clear_filename();
+  static const int kFilenameFieldNumber = 1;
+  const ::std::string& filename(int index) const;
+  ::std::string* mutable_filename(int index);
+  void set_filename(int index, const ::std::string& value);
+  void set_filename(int index, const char* value);
+  void set_filename(int index, const char* value, size_t size);
+  ::std::string* add_filename();
+  void add_filename(const ::std::string& value);
+  void add_filename(const char* value);
+  void add_filename(const char* value, size_t size);
+  const ::google::protobuf::RepeatedPtrField< ::std::string>& filename() const;
+  ::google::protobuf::RepeatedPtrField< ::std::string>* mutable_filename();
+
+  // @@protoc_insertion_point(class_scope:FileList)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable int _cached_size_;
+  ::google::protobuf::RepeatedPtrField< ::std::string> filename_;
+  friend void  protobuf_InitDefaults_Packet_2eproto_impl();
+  friend void  protobuf_AddDesc_Packet_2eproto_impl();
+  friend void protobuf_AssignDesc_Packet_2eproto();
+  friend void protobuf_ShutdownFile_Packet_2eproto();
+
+  void InitAsDefaultInstance();
+};
+extern ::google::protobuf::internal::ExplicitlyConstructed<FileList> FileList_default_instance_;
+
 // ===================================================================
 
 
@@ -1288,6 +1406,51 @@ inline void Packet::set_allocated_filerecord(::FileRecord* filerecord) {
     clear_has_filerecord();
   }
   // @@protoc_insertion_point(field_set_allocated:Packet.filerecord)
+}
+
+// optional .FileList filelist = 8;
+inline bool Packet::has_filelist() const {
+  return (_has_bits_[0] & 0x00000080u) != 0;
+}
+inline void Packet::set_has_filelist() {
+  _has_bits_[0] |= 0x00000080u;
+}
+inline void Packet::clear_has_filelist() {
+  _has_bits_[0] &= ~0x00000080u;
+}
+inline void Packet::clear_filelist() {
+  if (filelist_ != NULL) filelist_->::FileList::Clear();
+  clear_has_filelist();
+}
+inline const ::FileList& Packet::filelist() const {
+  // @@protoc_insertion_point(field_get:Packet.filelist)
+  return filelist_ != NULL ? *filelist_
+                         : *::FileList::internal_default_instance();
+}
+inline ::FileList* Packet::mutable_filelist() {
+  set_has_filelist();
+  if (filelist_ == NULL) {
+    filelist_ = new ::FileList;
+  }
+  // @@protoc_insertion_point(field_mutable:Packet.filelist)
+  return filelist_;
+}
+inline ::FileList* Packet::release_filelist() {
+  // @@protoc_insertion_point(field_release:Packet.filelist)
+  clear_has_filelist();
+  ::FileList* temp = filelist_;
+  filelist_ = NULL;
+  return temp;
+}
+inline void Packet::set_allocated_filelist(::FileList* filelist) {
+  delete filelist_;
+  filelist_ = filelist;
+  if (filelist) {
+    set_has_filelist();
+  } else {
+    clear_has_filelist();
+  }
+  // @@protoc_insertion_point(field_set_allocated:Packet.filelist)
 }
 
 inline const Packet* Packet::internal_default_instance() {
@@ -1820,7 +1983,71 @@ inline void FileRecord::set_size(::google::protobuf::int32 value) {
 inline const FileRecord* FileRecord::internal_default_instance() {
   return &FileRecord_default_instance_.get();
 }
+// -------------------------------------------------------------------
+
+// FileList
+
+// repeated string filename = 1;
+inline int FileList::filename_size() const {
+  return filename_.size();
+}
+inline void FileList::clear_filename() {
+  filename_.Clear();
+}
+inline const ::std::string& FileList::filename(int index) const {
+  // @@protoc_insertion_point(field_get:FileList.filename)
+  return filename_.Get(index);
+}
+inline ::std::string* FileList::mutable_filename(int index) {
+  // @@protoc_insertion_point(field_mutable:FileList.filename)
+  return filename_.Mutable(index);
+}
+inline void FileList::set_filename(int index, const ::std::string& value) {
+  // @@protoc_insertion_point(field_set:FileList.filename)
+  filename_.Mutable(index)->assign(value);
+}
+inline void FileList::set_filename(int index, const char* value) {
+  filename_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:FileList.filename)
+}
+inline void FileList::set_filename(int index, const char* value, size_t size) {
+  filename_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:FileList.filename)
+}
+inline ::std::string* FileList::add_filename() {
+  // @@protoc_insertion_point(field_add_mutable:FileList.filename)
+  return filename_.Add();
+}
+inline void FileList::add_filename(const ::std::string& value) {
+  filename_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:FileList.filename)
+}
+inline void FileList::add_filename(const char* value) {
+  filename_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:FileList.filename)
+}
+inline void FileList::add_filename(const char* value, size_t size) {
+  filename_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:FileList.filename)
+}
+inline const ::google::protobuf::RepeatedPtrField< ::std::string>&
+FileList::filename() const {
+  // @@protoc_insertion_point(field_list:FileList.filename)
+  return filename_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::std::string>*
+FileList::mutable_filename() {
+  // @@protoc_insertion_point(field_mutable_list:FileList.filename)
+  return &filename_;
+}
+
+inline const FileList* FileList::internal_default_instance() {
+  return &FileList_default_instance_.get();
+}
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

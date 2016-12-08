@@ -11,6 +11,7 @@ message Packet{
 	optional FileRequest filerequest=5;
 	optional Ack ack=6;
 	optional FileRecord filerecord=7;
+	optional FileList filelist=8;
 }
 
 message FileData {
@@ -39,6 +40,9 @@ message FileRecord{
 	required string filename=1;
 	required string host=2;
 	required int32 size=3;
+}
+message FileList{
+	repeated string filename=1;
 }
 
 
